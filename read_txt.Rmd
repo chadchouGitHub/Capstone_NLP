@@ -10,7 +10,8 @@ Here is reading the txt file into r.
 I use readLines().
 It took several mins to read one txt file.
 
-
+Note: Something went wrong during knit HTML, but rm file still OK.
+There is no problem when I just run this three readLines() in different r script file.
 ```{r}
 nLpBlogs <- readLines("final/en_US/en_US.blogs.txt")
 nLpNews <- readLines("final/en_US/en_US.news.txt")
@@ -18,4 +19,18 @@ nLpTwitter <- readLines("final/en_US/en_US.twitter.txt")
 
 
 ```
+## Here are error message!
+processing file: read_txt.Rmd
+
+Quitting from lines 15-20 (read_txt.Rmd) 
+Error in file(con, "r") : cannot open the connection
+Calls: <Anonymous> ... withCallingHandlers -> withVisible -> eval -> eval -> readLines -> file
+Execution halted
+
+# If you know what is this, please tell me how to fix.
+
+
+
+
+
 
