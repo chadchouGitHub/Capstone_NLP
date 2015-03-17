@@ -1,0 +1,21 @@
+---
+title: "read_txt"
+author: "Chia-Ching Chou"
+date: "March 16, 2015"
+output:
+  html_document:
+    keep_md: yes
+---
+Here is reading the txt file into r.
+I use readLines().
+It took several mins to read one txt file.
+
+
+```{r}
+nLpBlogs <- readLines("final/en_US/en_US.blogs.txt")
+nLpNews <- readLines("final/en_US/en_US.news.txt")
+nLpTwitter <- readLines("final/en_US/en_US.twitter.txt")
+
+
+```
+
