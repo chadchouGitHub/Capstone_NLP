@@ -23,7 +23,18 @@ sent_ann <- Maxent_Sent_Token_Annotator()
 cBlog_annotations <- annotate(cBlog, list(sent_ann, word_ann))
 
 head(cBlog_annotations)
-head(cBlog)
+
+cBlog_doc <- AnnotatedPlainTextDocument(cBlog, cBlog_annotations)
+
+
+lenOfNews<- nchar(nLpNews)
+
+lenOfBlog<- nchar(nLpBlogs)
+summary(lenOfBlog)
+
+head(sents(cBlog_doc)[1:2])
+head(words(cBlog_doc))
+tail(nLpBlogs)
 
 ```
 ## Here are error message!
@@ -69,6 +80,21 @@ unlink("ex.data") # tidy up
 
 ```
 
+```{r}
 
+loveBlog<- grep("love",nLpBlogs, value=T)
+hateBlog<- grep("hate",nLpBlogs, value=T)
+
+loveTwitter<- grep("love",nLpTwitter, value=T)
+hateTwitter<- grep("hate",nLpTwitter, value=T)
+length(loveTwitter)
+length(hateTwitter)
+
+longStatTwitter<- grep("A computer once beat me at chess, but it was no match for me at kickboxing",nLpTwitter, value=T)
+
+
+
+
+```
 
 
