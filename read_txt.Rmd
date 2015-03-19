@@ -16,7 +16,14 @@ There is no problem when I just run this three readLines() in different r script
 nLpBlogs <- readLines("final/en_US/en_US.blogs.txt")
 nLpNews <- readLines("final/en_US/en_US.news.txt")
 nLpTwitter <- readLines("final/en_US/en_US.twitter.txt")
+cBlog <- paste(nLpBlogs[1:10], collapse = " ") ## I only take first 10 elements. whole txt file is too big.
+cBlog <- as.String(cBlog)
+word_ann <- Maxent_Word_Token_Annotator()
+sent_ann <- Maxent_Sent_Token_Annotator()
+cBlog_annotations <- annotate(cBlog, list(sent_ann, word_ann))
 
+head(cBlog_annotations)
+head(cBlog)
 
 ```
 ## Here are error message!
