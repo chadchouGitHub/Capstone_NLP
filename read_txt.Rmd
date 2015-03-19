@@ -30,6 +30,37 @@ Execution halted
 # If you know what is this, please tell me how to fix.
 
 
+Note: In the task 1, Data acquisition and cleaning, suggests use connection function, file(), url(), gzfile()...
+It will only read part of data from file or url ...
+
+```{r}
+con <- file("final/en_US/en_US.blogs.txt","r") ## This is a connection to one of the file.
+
+lineOne<- readLines(con, 1)
+lineFive <- readLines(con, 5)
+
+## In this way, I can just read part of txt w/o take to much time to hold on computer.
+
+close(con) ## What happen if I don't close con?
+## One connection close, you need to open it again.
+## Below scan() does not work for me.
+scanLineOne <- scan("final/en_US/en_US.blogs.txt",skip=1, nlines = 1:3) ##????? still don't know.
+scanLineFive <- scan(con)
+```
+
+scan() function practice.
+```{r}
+cat("TITLE extra line", "2 3 5 7", "11 13 17", file = "ex.data", sep = "\n") ## Make a ex.data txt file. 
+pp <- scan("ex.data", skip = 1, quiet = TRUE)
+
+pP1 <- scan("ex.data", skip = 1)
+pP2 <- scan("ex.data", skip = 1, nlines = 1) # only 1 line after the skipped one
+pP3 <- scan("ex.data", what = list("","","")) # flush is False -> read "7"
+pP4 <- scan("ex.data", what = list("","",""), flush = TRUE)
+unlink("ex.data") # tidy up
+
+
+```
 
 
 
