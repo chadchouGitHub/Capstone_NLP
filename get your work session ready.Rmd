@@ -16,8 +16,10 @@ rJava package is require for all NLP r package in this practice, but install rJa
 in some computers. ( When I try to install the first, my r section abort. )
 Note: Installation rJava has no problem. It is running library(rJava).
 I need to download JE 6 first before I run library(rJava)
+Update: I repeat same installation in Win8.1 It seems no need for JE6 to install before I run the "rJava"
 ```{r}
-## install.packages("rJava")
+ ##install.packages("rJava")
+options(java.parameters = "-Xmx8000m")
 library(rJava)
 
 
