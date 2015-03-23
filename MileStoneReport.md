@@ -16,35 +16,20 @@ library(knitr)
 ```
 
 ```r
-twitter <- system('wc -lwm final/en_US/en_US.twitter.txt',intern = T)
-```
-
-```
-## Warning: running command 'wc -lwm final/en_US/en_US.twitter.txt' had
-## status 1
+# twitter <- system('wc -lwm final/en_US/en_US.twitter.txt',intern = T)
+twitter  <-"2360148 30373603 166816544 final/en_US/en_US.twitter.txt"
 ```
  wc is system commond
  Using system() to run system commond. -lwm is for wc. it mean length, word counts, and size (m? not sure)
 
 ```r
-news <- system('wc -lwm final/en_US/en_US.news.txt',intern = T)
-```
-
-```
-## Warning: running command 'wc -lwm final/en_US/en_US.news.txt' had status 1
-```
-
-```r
-blogs <- system('wc -lwm final/en_US/en_US.blogs.txt',intern = T)
-```
-
-```
-## Warning: running command 'wc -lwm final/en_US/en_US.blogs.txt' had status
-## 1
-```
-
-```r
+# news <- system('wc -lwm final/en_US/en_US.news.txt',intern = T)
+news <- "1010242 34372530 205243643 final/en_US/en_US.news.txt"
+# blogs <- system('wc -lwm final/en_US/en_US.blogs.txt',intern = T)
+blogs <- "899288 37334147 208623081 final/en_US/en_US.blogs.txt"
 ten <- as.numeric(grep('[[:digit:]]', unlist(strsplit(twitter," ")), value = T))
+
+# sten <- as.list(ten)
 ```
 twitter = " 2360148 30373603 166816544 final/en_US/en_US.twitter.txt"
 split the elements of a character by " " in twitter and unlist it.
@@ -52,22 +37,39 @@ Use grep to find digits ( number in txt) and change to numbers
 
 ```r
 nen <- as.numeric(grep('[[:digit:]]', unlist(strsplit(news," ")), value = T))
+
+# snen <- as.list(nen)
 ben <- as.numeric(grep('[[:digit:]]', unlist(strsplit(blogs," ")), value = T))
+
+# sben <- as.list(ben)
 en <- as.data.frame(rbind(ten,nen,ben))
-# rownames(en) <- c("twitter","news","blogs")
-# colnames(en) <- c("line_counts","word_counts","document_size")
-kable(en, align='c', caption = "Summary of the datasets")
+rownames(en)<- c("twitter","news","blogs")
+#colnames(en, do.NULL = FALSE)
+# str(en)
+colnames(en)<- c("line","words","size")
+
+print(en)
 ```
 
+```
+##            line    words      size
+## twitter 2360148 30373603 166816544
+## news    1010242 34372530 205243643
+## blogs    899288 37334147 208623081
+```
+
+I can find what is wrong with Knit. But the r program run just fine.
+So I have the kable() result here.
 
 
-Table: Summary of the datasets
 
-----
-ten 
-nen 
-ben 
-----
+Here is error message after I run knit from R-studio:
+
+Quitting from lines 29-36 (MileStoneReport.Rmd) 
+Error in `colnames<-`(`*tmp*`, value = c("line_counts", "word_counts",  : 
+  'names' attribute [3] must be the same length as the vector [0]
+Calls: <Anonymous> ... withCallingHandlers -> withVisible -> eval -> eval -> colnames<-
+Execution halted
 
 You can also embed plots, for example:
 

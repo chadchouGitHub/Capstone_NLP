@@ -72,37 +72,37 @@ img {
 <p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>
 <pre class="r"><code>library(knitr)</code></pre>
 <pre><code>## Warning: package 'knitr' was built under R version 3.1.2</code></pre>
-<pre class="r"><code>twitter &lt;- system('wc -lwm final/en_US/en_US.twitter.txt',intern = T)</code></pre>
-<pre><code>## Warning: running command 'wc -lwm final/en_US/en_US.twitter.txt' had
-## status 1</code></pre>
+<pre class="r"><code># twitter &lt;- system('wc -lwm final/en_US/en_US.twitter.txt',intern = T)
+twitter  &lt;-&quot;2360148 30373603 166816544 final/en_US/en_US.twitter.txt&quot;</code></pre>
 <p>wc is system commond Using system() to run system commond. -lwm is for wc. it mean length, word counts, and size (m? not sure)</p>
-<pre class="r"><code>news &lt;- system('wc -lwm final/en_US/en_US.news.txt',intern = T)</code></pre>
-<pre><code>## Warning: running command 'wc -lwm final/en_US/en_US.news.txt' had status 1</code></pre>
-<pre class="r"><code>blogs &lt;- system('wc -lwm final/en_US/en_US.blogs.txt',intern = T)</code></pre>
-<pre><code>## Warning: running command 'wc -lwm final/en_US/en_US.blogs.txt' had status
-## 1</code></pre>
-<pre class="r"><code>ten &lt;- as.numeric(grep('[[:digit:]]', unlist(strsplit(twitter,&quot; &quot;)), value = T))</code></pre>
+<pre class="r"><code># news &lt;- system('wc -lwm final/en_US/en_US.news.txt',intern = T)
+news &lt;- &quot;1010242 34372530 205243643 final/en_US/en_US.news.txt&quot;
+# blogs &lt;- system('wc -lwm final/en_US/en_US.blogs.txt',intern = T)
+blogs &lt;- &quot;899288 37334147 208623081 final/en_US/en_US.blogs.txt&quot;
+ten &lt;- as.numeric(grep('[[:digit:]]', unlist(strsplit(twitter,&quot; &quot;)), value = T))
+
+# sten &lt;- as.list(ten)</code></pre>
 <p>twitter = &quot; 2360148 30373603 166816544 final/en_US/en_US.twitter.txt&quot; split the elements of a character by &quot; &quot; in twitter and unlist it. Use grep to find digits ( number in txt) and change to numbers</p>
 <pre class="r"><code>nen &lt;- as.numeric(grep('[[:digit:]]', unlist(strsplit(news,&quot; &quot;)), value = T))
+
+# snen &lt;- as.list(nen)
 ben &lt;- as.numeric(grep('[[:digit:]]', unlist(strsplit(blogs,&quot; &quot;)), value = T))
+
+# sben &lt;- as.list(ben)
 en &lt;- as.data.frame(rbind(ten,nen,ben))
-# rownames(en) &lt;- c(&quot;twitter&quot;,&quot;news&quot;,&quot;blogs&quot;)
-# colnames(en) &lt;- c(&quot;line_counts&quot;,&quot;word_counts&quot;,&quot;document_size&quot;)
-kable(en, align='c', caption = &quot;Summary of the datasets&quot;)</code></pre>
-<table>
-<caption>Summary of the datasets</caption>
-<tbody>
-<tr class="odd">
-<td align="left">ten</td>
-</tr>
-<tr class="even">
-<td align="left">nen</td>
-</tr>
-<tr class="odd">
-<td align="left">ben</td>
-</tr>
-</tbody>
-</table>
+rownames(en)&lt;- c(&quot;twitter&quot;,&quot;news&quot;,&quot;blogs&quot;)
+#colnames(en, do.NULL = FALSE)
+# str(en)
+colnames(en)&lt;- c(&quot;line&quot;,&quot;words&quot;,&quot;size&quot;)
+
+print(en)</code></pre>
+<pre><code>##            line    words      size
+## twitter 2360148 30373603 166816544
+## news    1010242 34372530 205243643
+## blogs    899288 37334147 208623081</code></pre>
+<p>I can find what is wrong with Knit. But the r program run just fine. So I have the kable() result here.</p>
+<p>Here is error message after I run knit from R-studio:</p>
+<p>Quitting from lines 29-36 (MileStoneReport.Rmd) Error in <code>colnames&lt;-</code>(<code>*tmp*</code>, value = c(“line_counts”, “word_counts”, : ‘names’ attribute [3] must be the same length as the vector [0] Calls: <Anonymous> … withCallingHandlers -&gt; withVisible -&gt; eval -&gt; eval -&gt; colnames&lt;- Execution halted</p>
 <p>You can also embed plots, for example:</p>
 
 
