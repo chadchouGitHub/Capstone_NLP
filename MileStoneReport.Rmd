@@ -28,12 +28,29 @@ Use grep to find digits ( number in txt) and change to numbers
 ```{r}
 nen <- as.numeric(grep('[[:digit:]]', unlist(strsplit(news," ")), value = T))
 ben <- as.numeric(grep('[[:digit:]]', unlist(strsplit(blogs," ")), value = T))
-en <- as.matrix(rbind(ten,nen,ben))
+en <- as.data.frame(rbind(ten,nen,ben))
 rownames(en) <- c("twitter","news","blogs")
 colnames(en) <- c("line_counts","word_counts","document_size")
 kable(en, align='c', caption = "Summary of the datasets")
 
 ```
+
+I can find what is wrong with Knit. But the r program run just fine.
+So I have the kable() result here.
+
+     | line_counts | word_counts | document_size |
+|:-------|:-----------:|:-----------:|:-------------:|
+|twitter |   2360148   |  30373603   |   166816544   |
+|news    |   1010242   |  34372530   |   205243643   |
+|blogs   |   899288    |  37334147   |   208623081   |
+
+Here is error message after I run knit from R-studio:
+
+Quitting from lines 29-36 (MileStoneReport.Rmd) 
+Error in `colnames<-`(`*tmp*`, value = c("line_counts", "word_counts",  : 
+  'names' attribute [3] must be the same length as the vector [0]
+Calls: <Anonymous> ... withCallingHandlers -> withVisible -> eval -> eval -> colnames<-
+Execution halted
 
 You can also embed plots, for example:
 
