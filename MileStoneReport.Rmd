@@ -82,11 +82,13 @@ enall <- tm_map(enall, stripWhitespace)
 # url <- 'http://www-personal.umich.edu/~jlawler/wordlist'
 # dic <- download.file(url,'dic.txt', method = 'curl')
 # dic <- readLines('dic.txt', encoding = 'UTF-8')
-
+ctrl <- list(tokenize = words, bounds = list(global = c(10,Inf)))
 
 ```
 
+```{r}
 
+```
 
 ```{r, echo=FALSE}
 
