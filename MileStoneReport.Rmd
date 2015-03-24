@@ -61,6 +61,32 @@ Calls: <Anonymous> ... withCallingHandlers -> withVisible -> eval -> eval -> col
 Execution halted
 
 You can also embed plots, for example:
+```{r}
+library(tm)
+library(stringi)
+
+ent <- readLines("final/en_US/en_US.twitter.txt", encoding = 'UTF-8')
+set.seed(1)
+subent <- ent[sample(1:length(ent),10000)]
+suben <- c(subent)
+ascllen <- stri_enc_toascii(suben)
+ascllen <- stri_replace_all_regex(ascllen,'\032','')
+## replace "\032" to ''. \032 is arrow in the text.
+en <- Corpus(VectorSource(ascllen))
+enall <- tm_map(en, content_transformer(tolower))
+enall <- tm_map(enall, removePunctuation)
+enall <- tm_map(enall, removeNumbers)
+enall <- tm_map(enall, removeWords, stopwords("english"))
+enall <- tm_map(enall, stemDocument,language = ("english"))
+enall <- tm_map(enall, stripWhitespace)
+# url <- 'http://www-personal.umich.edu/~jlawler/wordlist'
+# dic <- download.file(url,'dic.txt', method = 'curl')
+# dic <- readLines('dic.txt', encoding = 'UTF-8')
+
+
+```
+
+
 
 ```{r, echo=FALSE}
 
