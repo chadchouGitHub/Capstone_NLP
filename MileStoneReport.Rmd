@@ -13,7 +13,7 @@ When you click the **Knit** button a document will be generated that includes bo
 
 ```{r}
 library(knitr)
-# twitter <- system('wc -lwm final/en_US/en_US.twitter.txt',intern = T)
+#twitter <- system('wc -lwm final/en_US/en_US.twitter.txt',intern = T)
 twitter  <-"2360148 30373603 166816544 final/en_US/en_US.twitter.txt"
 ```
 wc is system commond
@@ -61,24 +61,24 @@ Calls: <Anonymous> ... withCallingHandlers -> withVisible -> eval -> eval -> col
 Execution halted
 
 You can also embed plots, for example:
-```{r}
+```{r axis = T,echo = F,cache=TRUE}
 library(tm)
 library(stringi)
 
-ent <- readLines("final/en_US/en_US.twitter.txt", encoding = 'UTF-8')
-set.seed(1)
-subent <- ent[sample(1:length(ent),10000)]
-suben <- c(subent)
-ascllen <- stri_enc_toascii(suben)
-ascllen <- stri_replace_all_regex(ascllen,'\032','')
+# ent <- readLines("final/en_US/en_US.twitter.txt", encoding = 'UTF-8')
+ #set.seed(1)
+# subent <- ent[sample(1:length(ent),10000)]
+# suben <- c(subent)
+# ascllen <- stri_enc_toascii(suben)
+# ascllen <- stri_replace_all_regex(ascllen,'\032','')
 ## replace "\032" to ''. \032 is arrow in the text.
-en <- Corpus(VectorSource(ascllen))
-enall <- tm_map(en, content_transformer(tolower))
-enall <- tm_map(enall, removePunctuation)
-enall <- tm_map(enall, removeNumbers)
-enall <- tm_map(enall, removeWords, stopwords("english"))
-enall <- tm_map(enall, stemDocument,language = ("english"))
-enall <- tm_map(enall, stripWhitespace)
+# en <- Corpus(VectorSource(ascllen))
+# enall <- tm_map(en, content_transformer(tolower))
+#enall <- tm_map(enall, removePunctuation)
+#enall <- tm_map(enall, removeNumbers)
+#enall <- tm_map(enall, removeWords, stopwords("english"))
+# enall <- tm_map(enall, stemDocument,language = ("english"))
+#enall <- tm_map(enall, stripWhitespace)
 # url <- 'http://www-personal.umich.edu/~jlawler/wordlist'
 # dic <- download.file(url,'dic.txt', method = 'curl')
 # dic <- readLines('dic.txt', encoding = 'UTF-8')
@@ -87,7 +87,33 @@ ctrl <- list(tokenize = words, bounds = list(global = c(10,Inf)))
 ```
 
 ```{r}
+options(mc.cores=1)
 
+BigramTokenizer <- function(x) {RWeka::NGramTokenizer(x, RWeka::Weka_control(min = 2, max = 2))}
+ctrl2 <- list(tokenize = BigramTokenizer, bounds = list(global = c(10,Inf)))
+
+TrigramTokenizer <- function(x) {RWeka::NGramTokenizer(x, RWeka::Weka_control(min = 3, max = 3))}
+ctrl3 <- list(tokenize = TrigramTokenizer, bounds = list(global = c(10,Inf)))
+
+# TeragramTokenizer <- function(x) {RWeka::NGramTokenizer(x, RWeka::Weka_control(min = 4, max = 4))}
+# ctrl4 <- list(tokenize = TeragramTokenizer, bounds = list(global = c(10,Inf)))
+
+Tokenizer <- function(x) {RWeka::NGramTokenizer(x, RWeka::Weka_control(min = 1, max = 3))}
+ctrl0 <- list(tokenize = Tokenizer, bounds = list(global = c(10,Inf)))
+
+library(slam)
+en.tdm <- TermDocumentMatrix(enall,control = ctrl)
+en.bitdm <- TermDocumentMatrix(enall,control = ctrl2)
+en.tritdm <- TermDocumentMatrix(enall,control = ctrl3)
+# en.teratdm <- TermDocumentMatrix(enall,control = ctrl4)
+en.tdm0 <- TermDocumentMatrix(enall,control = ctrl0)
+
+freq <- rowapply_simple_triplet_matrix(en.tdm,sum)
+freqbi <- rowapply_simple_triplet_matrix(en.bitdm,sum)
+freqtri <- rowapply_simple_triplet_matrix(en.tritdm,sum)
+# freqtera <- rowapply_simple_triplet_matrix(en.teratdm,sum)
+freq0 <- rowapply_simple_triplet_matrix(en.tdm0,sum)
+```
 ```
 
 ```{r, echo=FALSE}

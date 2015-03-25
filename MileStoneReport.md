@@ -16,11 +16,11 @@ library(knitr)
 ```
 
 ```r
-# twitter <- system('wc -lwm final/en_US/en_US.twitter.txt',intern = T)
+#twitter <- system('wc -lwm final/en_US/en_US.twitter.txt',intern = T)
 twitter  <-"2360148 30373603 166816544 final/en_US/en_US.twitter.txt"
 ```
- wc is system commond
- Using system() to run system commond. -lwm is for wc. it mean length, word counts, and size (m? not sure)
+wc is system commond
+Using system() to run system commond. -lwm is for wc. it mean length, word counts, and size (m? not sure)
 
 ```r
 # news <- system('wc -lwm final/en_US/en_US.news.txt',intern = T)
@@ -72,6 +72,9 @@ Calls: <Anonymous> ... withCallingHandlers -> withVisible -> eval -> eval -> col
 Execution halted
 
 You can also embed plots, for example:
+
+
+
 
 
 
