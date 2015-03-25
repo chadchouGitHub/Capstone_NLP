@@ -77,14 +77,14 @@ library(RWekajars)
 # ascllen <- stri_replace_all_regex(ascllen,'\032','')
 ## replace "\032" to ''. \032 is arrow in the text.
 # en <- Corpus(VectorSource(ascllen))
-enall <- tm_map(en, content_transformer(tolower))
+#enall <- tm_map(en, content_transformer(tolower))
 #enall <- tm_map(enall, removePunctuation)
 #enall <- tm_map(enall, removeNumbers)
 #enall <- tm_map(enall, removeWords, stopwords("english"))
 # enall <- tm_map(enall, stemDocument,language = ("english"))
-enall <- tm_map(enall, stripWhitespace)
+#enall <- tm_map(enall, stripWhitespace)
 
-enall <- tm_map(enall, PlainTextDocument) ## This line is for the error message
+# enall <- tm_map(enall, PlainTextDocument) ## This line is for the error message
 ## Error: inherits(doc, "TextDocument") is not TRUE. It show up when I run 
 ## TermDocumentMatrix() function. I find the answer from here: http://stackoverflo## cw.com/questions/24191728/documenttermmatrix-error-on-corpus-argument
 
@@ -98,7 +98,7 @@ ctrl <- list(tokenize = words, bounds = list(global = c(10,Inf)))
 ```
 
 ```{r}
-options(mc.cores=1)
+# options(mc.cores=1)
 
 BigramTokenizer <- function(x) {RWeka::NGramTokenizer(x, RWeka::Weka_control(min = 2, max = 2))}
 ctrl2 <- list(tokenize = BigramTokenizer, bounds = list(global = c(10,Inf)))
@@ -114,20 +114,28 @@ ctrl0 <- list(tokenize = Tokenizer, bounds = list(global = c(10,Inf)))
 
 library(slam)
 en.tdm <- TermDocumentMatrix(enall,control = ctrl)
-en.bitdm <- TermDocumentMatrix(enall,control = ctrl2)
-en.tritdm <- TermDocumentMatrix(enall,control = ctrl3)
+#en.bitdm <- TermDocumentMatrix(enall,control = ctrl2)
+#en.tritdm <- TermDocumentMatrix(enall,control = ctrl3)
 # en.teratdm <- TermDocumentMatrix(enall,control = ctrl4)
-en.tdm0 <- TermDocumentMatrix(enall,control = ctrl0)
+#en.tdm0 <- TermDocumentMatrix(enall,control = ctrl0)
 
 freq <- rowapply_simple_triplet_matrix(en.tdm,sum)
-freqbi <- rowapply_simple_triplet_matrix(en.bitdm,sum)
-freqtri <- rowapply_simple_triplet_matrix(en.tritdm,sum)
+#freqbi <- rowapply_simple_triplet_matrix(en.bitdm,sum)
+#freqtri <- rowapply_simple_triplet_matrix(en.tritdm,sum)
 # freqtera <- rowapply_simple_triplet_matrix(en.teratdm,sum)
-freq0 <- rowapply_simple_triplet_matrix(en.tdm0,sum)
-```
+#freq0 <- rowapply_simple_triplet_matrix(en.tdm0,sum)
 ```
 
+
 ```{r, echo=FALSE}
+par(oma=c(0,0,3,0),mfrow = c(2,2), mar=c(2,2,2,2))
+
+hist(log(freq), breaks = 50, main = 'uni gram corpus', xlab='the log value of the Frequency', ylab='')
+hist(log(freqbi), breaks = 50, main = 'bi gram corpus', xlab='the log value of the Frequency', ylab='')
+hist(log(freqtri), breaks = 50, main = 'tri gram corpus', xlab='the log value of the Frequency', ylab='')
+library(wordcloud)
+wordcloud(names(freq0), freq0, min.freq = 400)
+title("Figure 1: Histogram of term frequency and word cloud of all of the three corpus",outer=T)
 
 ```
 
