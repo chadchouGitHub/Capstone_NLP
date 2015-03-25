@@ -73,9 +73,45 @@ Execution halted
 
 You can also embed plots, for example:
 
+```
+## Warning: package 'RWeka' was built under R version 3.1.2
+```
+
+```
+## Warning: package 'RWekajars' was built under R version 3.1.2
+```
+
+
+```r
+# options(mc.cores=1)
+
+BigramTokenizer <- function(x) {RWeka::NGramTokenizer(x, RWeka::Weka_control(min = 2, max = 2))}
+ctrl2 <- list(tokenize = BigramTokenizer, bounds = list(global = c(10,Inf)))
+
+TrigramTokenizer <- function(x) {RWeka::NGramTokenizer(x, RWeka::Weka_control(min = 3, max = 3))}
+ctrl3 <- list(tokenize = TrigramTokenizer, bounds = list(global = c(10,Inf)))
+
+# TeragramTokenizer <- function(x) {RWeka::NGramTokenizer(x, RWeka::Weka_control(min = 4, max = 4))}
+# ctrl4 <- list(tokenize = TeragramTokenizer, bounds = list(global = c(10,Inf)))
+
+#Tokenizer <- function(x) {RWeka::NGramTokenizer(x, RWeka::Weka_control(min = 1, max = 3))}
+#ctrl0 <- list(tokenize = Tokenizer, bounds = list(global = c(10,Inf)))
+
+#library(slam)
+#en.tdm <- TermDocumentMatrix(enall,control = ctrl)
+#en.bitdm <- TermDocumentMatrix(enall,control = ctrl2)
+#en.tritdm <- TermDocumentMatrix(enall,control = ctrl3)
+# en.teratdm <- TermDocumentMatrix(enall,control = ctrl4)
+#en.tdm0 <- TermDocumentMatrix(enall,control = ctrl0)
+
+#freq <- rowapply_simple_triplet_matrix(en.tdm,sum)
+#freqbi <- rowapply_simple_triplet_matrix(en.bitdm,sum)
+#freqtri <- rowapply_simple_triplet_matrix(en.tritdm,sum)
+# freqtera <- rowapply_simple_triplet_matrix(en.teratdm,sum)
+#freq0 <- rowapply_simple_triplet_matrix(en.tdm0,sum)
+```
 
 
 
 
-
-
+![My Figure](figure1.png)

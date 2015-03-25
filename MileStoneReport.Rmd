@@ -109,17 +109,17 @@ ctrl3 <- list(tokenize = TrigramTokenizer, bounds = list(global = c(10,Inf)))
 # TeragramTokenizer <- function(x) {RWeka::NGramTokenizer(x, RWeka::Weka_control(min = 4, max = 4))}
 # ctrl4 <- list(tokenize = TeragramTokenizer, bounds = list(global = c(10,Inf)))
 
-Tokenizer <- function(x) {RWeka::NGramTokenizer(x, RWeka::Weka_control(min = 1, max = 3))}
-ctrl0 <- list(tokenize = Tokenizer, bounds = list(global = c(10,Inf)))
+#Tokenizer <- function(x) {RWeka::NGramTokenizer(x, RWeka::Weka_control(min = 1, max = 3))}
+#ctrl0 <- list(tokenize = Tokenizer, bounds = list(global = c(10,Inf)))
 
-library(slam)
-en.tdm <- TermDocumentMatrix(enall,control = ctrl)
+#library(slam)
+#en.tdm <- TermDocumentMatrix(enall,control = ctrl)
 #en.bitdm <- TermDocumentMatrix(enall,control = ctrl2)
 #en.tritdm <- TermDocumentMatrix(enall,control = ctrl3)
 # en.teratdm <- TermDocumentMatrix(enall,control = ctrl4)
 #en.tdm0 <- TermDocumentMatrix(enall,control = ctrl0)
 
-freq <- rowapply_simple_triplet_matrix(en.tdm,sum)
+#freq <- rowapply_simple_triplet_matrix(en.tdm,sum)
 #freqbi <- rowapply_simple_triplet_matrix(en.bitdm,sum)
 #freqtri <- rowapply_simple_triplet_matrix(en.tritdm,sum)
 # freqtera <- rowapply_simple_triplet_matrix(en.teratdm,sum)
@@ -128,15 +128,15 @@ freq <- rowapply_simple_triplet_matrix(en.tdm,sum)
 
 
 ```{r, echo=FALSE}
-par(oma=c(0,0,3,0),mfrow = c(2,2), mar=c(2,2,2,2))
+#par(oma=c(0,0,3,0),mfrow = c(2,2), mar=c(2,2,2,2))
 
-hist(log(freq), breaks = 50, main = 'uni gram corpus', xlab='the log value of the Frequency', ylab='')
-hist(log(freqbi), breaks = 50, main = 'bi gram corpus', xlab='the log value of the Frequency', ylab='')
-hist(log(freqtri), breaks = 50, main = 'tri gram corpus', xlab='the log value of the Frequency', ylab='')
-library(wordcloud)
-wordcloud(names(freq0), freq0, min.freq = 400)
-title("Figure 1: Histogram of term frequency and word cloud of all of the three corpus",outer=T)
+#hist(log(freq), breaks = 50, main = 'uni gram corpus', xlab='the log value of the Frequency', ylab='')
+#hist(log(freqbi), breaks = 50, main = 'bi gram corpus', xlab='the log value of the Frequency', ylab='')
+#hist(log(freqtri), breaks = 50, main = 'tri gram corpus', xlab='the log value of the Frequency', ylab='')
+#library(wordcloud)
+#wordcloud(names(freq0), freq0, min.freq = 400)
+#title("Figure 1: Histogram of term frequency and word cloud of all of the three corpus",outer=T)
 
 ```
 
-
+![My Figure](figure1.png)
