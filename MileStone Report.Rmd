@@ -1,0 +1,30 @@
+---
+title: "MileStone Report"
+author: "Chia-Ching Chou"
+date: "March 27, 2015"
+output: html_document
+---
+# Introduction
+
+# Data Collection
+
+
+
+# Data Preview
+
+
+# Data Transform
+
+
+# Exporate Data
+
+```{r}
+
+```
+
+
+
+```{r, echo=FALSE}
+
+```
+
