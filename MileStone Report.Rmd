@@ -5,16 +5,42 @@ date: "March 27, 2015"
 output:
   html_document:
     keep_md: yes
----
+---    
+System Mac OSX 10.10.2 4G RAM. Core i5 1.7GHz
+R studio 0.98.994 
+
 # Introduction
 This is report for Capstone Project. In this project, I demonstrate that I've downloaded the data and have successfully loaded it in. I also create a basic report of summary statistics about the data sets, and report interesting findings that I amassed so far. I will make a plan for creating a prediction algorithm and Shiny app, and I would like your feedback in this plan.
+(Most of the R code will not show up in this report, but you can find them in my github account. )
 
 # Data Collection
 
 
-
 # Data Preview
+The Firs Step to begin is to know how many lines, words, and size of each data. This will help to decide how much information I will need to extract out from data set. Working on over size data will crash my computer, and working on not enough data will give wrong information.
 
+Bellow, I use system command "wc" to get information of each file in lines, words, and file size. (When I direct use system() in the code, the markdown will halt in process. So I assign the "wc" output result to each vector. This is just for report. )
+```{r}
+#twitter <- system('wc -lwm final/en_US/en_US.twitter.txt',intern = T)
+twitter  <-"2360148 30373603 166816544 final/en_US/en_US.twitter.txt"
+# news <- system('wc -lwm final/en_US/en_US.news.txt',intern = T)
+news <- "1010242 34372530 205243643 final/en_US/en_US.news.txt"
+# blogs <- system('wc -lwm final/en_US/en_US.blogs.txt',intern = T)
+blogs <- "899288 37334147 208623081 final/en_US/en_US.blogs.txt"
+tSummary <- as.numeric(grep('[[:digit:]]', unlist(strsplit(twitter," ")), value = T))
+nSummary <- as.numeric(grep('[[:digit:]]', unlist(strsplit(news," ")), value = T))
+bSummary <- as.numeric(grep('[[:digit:]]', unlist(strsplit(blogs," ")), value = T))
+tableSummary <- as.data.frame(rbind(tSummary,nSummary,bSummary))
+rownames(tableSummary)<- c("twitter","news","blogs")
+colnames(tableSummary)<- c("line","words","size")
+```
+
+## Summary table for each data set 
+
+```{r}
+print(tableSummary)
+```
+Next, I will use readline() to get each date set into R for Data Transform.
 
 # Data Transform
 

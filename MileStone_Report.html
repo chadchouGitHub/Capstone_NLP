@@ -68,14 +68,39 @@ img {
 </div>
 
 
+<p>System Mac OSX 10.10.2 4G RAM. Core i5 1.7GHz R studio 0.98.994</p>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
+<p>This is report for Capstone Project. In this project, I demonstrate that I’ve downloaded the data and have successfully loaded it in. I also create a basic report of summary statistics about the data sets, and report interesting findings that I amassed so far. I will make a plan for creating a prediction algorithm and Shiny app, and I would like your feedback in this plan. (Most of the R code will not show up in this report, but you can find them in my github account. )</p>
 </div>
 <div id="data-collection" class="section level1">
 <h1>Data Collection</h1>
 </div>
 <div id="data-preview" class="section level1">
 <h1>Data Preview</h1>
+<p>The Firs Step to begin is to know how many lines, words, and size of each data. This will help to decide how much information I will need to extract out from data set. Working on over size data will crash my computer, and working on not enough data will give wrong information.</p>
+<p>Bellow, I use system command “wc” to get information of each file in lines, words, and file size. (When I direct use system() in the code, the markdown will halt in process. So I assign the “wc” output result to each vector. This is just for report. )</p>
+<pre class="r"><code>#twitter &lt;- system('wc -lwm final/en_US/en_US.twitter.txt',intern = T)
+twitter  &lt;-&quot;2360148 30373603 166816544 final/en_US/en_US.twitter.txt&quot;
+# news &lt;- system('wc -lwm final/en_US/en_US.news.txt',intern = T)
+news &lt;- &quot;1010242 34372530 205243643 final/en_US/en_US.news.txt&quot;
+# blogs &lt;- system('wc -lwm final/en_US/en_US.blogs.txt',intern = T)
+blogs &lt;- &quot;899288 37334147 208623081 final/en_US/en_US.blogs.txt&quot;
+tSummary &lt;- as.numeric(grep('[[:digit:]]', unlist(strsplit(twitter,&quot; &quot;)), value = T))
+nSummary &lt;- as.numeric(grep('[[:digit:]]', unlist(strsplit(news,&quot; &quot;)), value = T))
+bSummary &lt;- as.numeric(grep('[[:digit:]]', unlist(strsplit(blogs,&quot; &quot;)), value = T))
+tableSummary &lt;- as.data.frame(rbind(tSummary,nSummary,bSummary))
+rownames(tableSummary)&lt;- c(&quot;twitter&quot;,&quot;news&quot;,&quot;blogs&quot;)
+colnames(tableSummary)&lt;- c(&quot;line&quot;,&quot;words&quot;,&quot;size&quot;)</code></pre>
+<div id="summary-table-for-each-data-set" class="section level2">
+<h2>Summary table for each data set</h2>
+<pre class="r"><code>print(tableSummary)</code></pre>
+<pre><code>##            line    words      size
+## twitter 2360148 30373603 166816544
+## news    1010242 34372530 205243643
+## blogs    899288 37334147 208623081</code></pre>
+<p>Next, I will use readline() to get each date set into R for Data Transform.</p>
+</div>
 </div>
 <div id="data-transform" class="section level1">
 <h1>Data Transform</h1>
