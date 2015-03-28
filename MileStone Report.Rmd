@@ -7,6 +7,7 @@ output:
     keep_md: yes
 ---
 # Introduction
+This is report for Capstone Project. In this project, I demonstrate that I've downloaded the data and have successfully loaded it in. I also create a basic report of summary statistics about the data sets, and report interesting findings that I amassed so far. I will make a plan for creating a prediction algorithm and Shiny app, and I would like your feedback in this plan.
 
 # Data Collection
 
