@@ -45,7 +45,7 @@ Next, I will use readline() to get each date set into R for Data Transform.
 # Data Transform
 
 
-# Exporate Data
+# Exploratory analysis
 
 ```{r}
 
