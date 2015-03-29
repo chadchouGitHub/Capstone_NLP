@@ -13,6 +13,19 @@ bSummary <- as.numeric(grep('[[:digit:]]', unlist(strsplit(blogs," ")), value = 
 tableSummary <- as.data.frame(rbind(tSummary,nSummary,bSummary))
 rownames(tableSummary)<- c("twitter","news","blogs")
 colnames(tableSummary)<- c("line","words","size")
-
+print(tableSummary)
 #-------------------------------------------------------------------
+
+#--------------------------------------------------------------------
+twitter <- readLines("final/en_US/en_US.twitter.txt", encoding = 'UTF-8')
+news<- readLines('final/en_US/en_US.news.txt', encoding = 'UTF-8')
+blogs<- readLines('final/en_US/en_US.blogs.txt', encoding = 'UTF-8')
+set.seed(1)
+subent <- ent[sample(1:length(ent),10000)] 
+set.seed(1)
+subenn <- enn[sample(1:length(enn),20000)]
+set.seed(1)
+subenb <- enb[sample(1:length(enb),30000)]
+#-------------------------------------------------------------------
+
 
