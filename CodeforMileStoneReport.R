@@ -63,3 +63,32 @@ typeOfwordsN <- length(newsTokenCount)
 typeOfwordsB <- length(blogsTokenCount)
 
 #---------------------------------------------------------------------
+
+
+#----------------------------------------------------------------------
+twitterTokenCount<- data.frame(word=names(twitterTokenCount), freq=twitterTokenCount)
+twitterTokenCount<-twitterTokenCount[-1,]
+newsTokenCount<- data.frame(word=names(newsTokenCount), freq=newsTokenCount)
+newsTokenCount<-newsTokenCount[-1,]
+blogsTokenCount<- data.frame(word=names(blogsTokenCount), freq=blogsTokenCount)
+blogsTokenCount<-blogsTokenCount[-1,]
+#-----------------------------------------------------------------------------
+
+# Figure 1 for each text file's hight counting words
+#-------------------------------------------------------------------------
+
+
+plotT300000<- subset(twitterTokenCount, freq >300000)
+wordListT <- as.character(plotT300000[,1])
+barplot(plotT300000[,"freq"], names=wordListT)
+
+plotN300000<- subset(newsTokenCount, freq >300000)
+wordListN <- as.character(plotN300000[,1])
+barplot(plotN300000[,"freq"], names=wordList)
+
+plotB300000<- subset(blogsTokenCount, freq >300000)
+wordListB <- as.character(plotB300000[,1])
+barplot(plotB300000[,"freq"], names=wordListB)
+
+
+

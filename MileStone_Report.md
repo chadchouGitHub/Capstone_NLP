@@ -80,27 +80,68 @@ twitterT <- c(35261564)
 newsT <- c(38803501)
 #blogsT <- length(blogsTokens)
 blogsT <- c(41609972)
-
+# typeOfwordsT <- length(twitterTokenCount)
+typeOfwordsT <- c(524166)
+# typeOfwordsN <- length(newsTokenCount)
+typeOfwordsN <- c(425176)
+# typeOfwordsB <- length(blogsTokenCount)
+typeOfwordsB <- c(540783)
+rT <- round(c(twitterT/typeOfwordsT))
+rN <- round(c(newsT/typeOfwordsN))
+rB <- round(c(blogsT/typeOfwordsB))
 tokenSummary<- as.data.frame(rbind(twitterT,newsT,blogsT))
-
-rownames(tokenSummary)<- c("twitter","news","blogs")
-colnames(tokenSummary)<- c("lenght")
-
-print(tokenSummary)
-```
-
-```
-##           lenght
-## twitter 35261564
-## news    38803501
-## blogs   41609972
+wordSummary<- as.data.frame(rbind(typeOfwordsT,typeOfwordsN,typeOfwordsB))
+repeatToken <- as.data.frame(rbind(rT,rN,rB))
+totalSummary <- as.data.frame(cbind(tokenSummary[,1],wordSummary[,1],repeatToken[,1]))
+rownames(totalSummary)<- c("twitter","news","blogs")
+colnames(totalSummary)<- c("tokensNo","wordsNo","repeatToken")
 ```
 
 # Exploratory analysis
+After tokenization each file, I compare the total number of tokens in each file. I also look the type of words in each files. By dive tatal tokens with words type, we can see the possible repeats of each token in each file's token population.
 
+```r
+print(totalSummary)
+```
 
+```
+##         tokensNo wordsNo repeatToken
+## twitter 35261564  524166          67
+## news    38803501  425176          91
+## blogs   41609972  540783          77
+```
+In the summary table, we see the news file have less tokens than blogs, and less words in all three files. By dive tokenNo/wordsNo, we can see the news may have higher repeats in the tokens. In the other hand, the twitter has lowest repeat of tokens. It may imply the diversity of words use in twitter than news.
 
+### High counting words
+The possible repeat of each tokens does not give me enough information to think 
+what I can use to make a app to predict next input word from typing few texts. So I decide to look the Highest counting words in each files.
+
+Here are barplot to show the word counting bigger than 300000
+
+### Twitter
+![My Figure](Twitterfig1.png)
+
+### News
+![My Figure](Newsfig1.png)
+
+### Blogs
+![My Figure](blogsFig1.png)
+
+In this barplot, I can see the news and blogs has similar high counting word, but twitter is little different from others.
 
 # Summary
+1. Here I find the twitter has different words counting and repeats. When I develop a app to predict next word, I think it is better to have different method or parameters for twitter prediction. 
+2. Because the text file is so big. Maybe I can just use one third of text to build algorithm.
+3. I maybe able to put News and Blogs together, since they has similar high counting words.
+4. The high counting word seems not prove any sentence purpose, so next I will look the words associate with this high counting words, as my method to make bigram tokenization.
+
+
+
+
+
+
+
+
+
 
 

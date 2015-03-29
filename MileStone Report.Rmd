@@ -9,6 +9,9 @@ output:
 System Mac OSX 10.10.2 4G RAM. Core i5 1.7GHz
 R studio 0.98.994 
 
+The code use to make figs and input data can be found here:
+
+
 # Introduction
 This is report for Capstone Project. In this project, I demonstrate that I've downloaded the data and have successfully loaded it in. I also create a basic report of summary statistics about the data sets, and report interesting findings that I amassed so far. I will make a plan for creating a prediction algorithm and Shiny app, and I would like your feedback in this plan.
 (Most of the R code will not show up in this report, but you can find them in my github account. )
@@ -90,17 +93,47 @@ totalSummary <- as.data.frame(cbind(tokenSummary[,1],wordSummary[,1],repeatToken
 rownames(totalSummary)<- c("twitter","news","blogs")
 colnames(totalSummary)<- c("tokensNo","wordsNo","repeatToken")
 
-print(totalSummary)
+
 ```
 
 # Exploratory analysis
-
+After tokenization each file, I compare the total number of tokens in each file. I also look the type of words in each files. By dive tatal tokens with words type, we can see the possible repeats of each token in each file's token population.
 ```{r}
-
+print(totalSummary)
 ```
+In the summary table, we see the news file have less tokens than blogs, and less words in all three files. By dive tokenNo/wordsNo, we can see the news may have higher repeats in the tokens. In the other hand, the twitter has lowest repeat of tokens. It may imply the diversity of words use in twitter than news.
 
+### High counting words
+The possible repeat of each tokens does not give me enough information to think 
+what I can use to make a app to predict next input word from typing few texts. So I decide to look the Highest counting words in each files.
+
+Here are barplot to show the word counting bigger than 300000
+
+### Twitter
+![My Figure](Twitterfig1.png)
+
+### News
+![My Figure](Newsfig1.png)
+
+### Blogs
+![My Figure](blogsFig1.png)
+
+In this barplot, I can see the news and blogs has similar high counting word, but twitter is little different from others.
 
 # Summary
+1. Here I find the twitter has different words counting and repeats. When I develop a app to predict next word, I think it is better to have different method or parameters for twitter prediction. 
+2. Because the text file is so big. Maybe I can just use one third of text to build algorithm.
+3. I maybe able to put News and Blogs together, since they has similar high counting words.
+4. The high counting word seems not prove any sentence purpose, so next I will look the words associate with this high counting words, as my method to make bigram tokenization.
+
+
+
+
+
+
+
+
+
 ```{r, echo=FALSE}
 
 ```
