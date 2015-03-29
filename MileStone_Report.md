@@ -4,6 +4,9 @@ March 27, 2015
 System Mac OSX 10.10.2 4G RAM. Core i5 1.7GHz
 R studio 0.98.994 
 
+The code use to make figs and input data can be found here:
+https://github.com/chadchouGitHub/Capstone_NLP/blob/master/CodeforMileStoneReport.R
+
 # Introduction
 This is report for Capstone Project. In this project, I demonstrate that I've downloaded the data and have successfully loaded it in. I also create a basic report of summary statistics about the data sets, and report interesting findings that I amassed so far. I will make a plan for creating a prediction algorithm and Shiny app, and I would like your feedback in this plan.
 (Most of the R code will not show up in this report, but you can find them in my github account. )

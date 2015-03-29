@@ -1,5 +1,7 @@
-## Here is the R code for MileStone Report
+## Here is the R code for MileStone Report 
 
+## The report make markdown file can be see at rPubs link below.
+## http://rpubs.com/ChiaChingChou/MileStone_Report 
 #----------------------------------------------------------------------
 #twitter <- system('wc -lwm final/en_US/en_US.twitter.txt',intern = T)
 twitter  <-"2360148 30373603 166816544 final/en_US/en_US.twitter.txt"
