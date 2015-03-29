@@ -75,6 +75,7 @@ img {
 </div>
 <div id="data-collection" class="section level1">
 <h1>Data Collection</h1>
+<p>Three text files are collected from twitter, news, and blogs. This data are download from Coursera Capston website. In this report, I use English data set.</p>
 </div>
 <div id="data-preview" class="section level1">
 <h1>Data Preview</h1>
@@ -99,14 +100,24 @@ colnames(tableSummary)&lt;- c(&quot;line&quot;,&quot;words&quot;,&quot;size&quot
 ## twitter 2360148 30373603 166816544
 ## news    1010242 34372530 205243643
 ## blogs    899288 37334147 208623081</code></pre>
-<p>Next, I will use readline() to get each date set into R for Data Transform.</p>
+<p>Next, I will use readLines() to get each date set into R for Data Transform. Because each file is very large. I will need to process one by one.</p>
 </div>
 </div>
 <div id="data-transform" class="section level1">
 <h1>Data Transform</h1>
+<p>Before I can analysis the text in each file. I will need to sperate non-text character from text character. Therefor I put a “{ }” to non-text character first, then split text with “{ }”. The detials of the example process in twitter text list below. First, put { } around non-text characters, and assign to vector twitterText. Second, remove twitter from memory, to light the loading of computer. Third, change all text to low case. Forth, split string text by “{ }”. Fifth, unlist each element in the vector. The example code is here:</p>
+<div id="i-did-not-run-the-code-with-markdown-file.-it-took-to-much-time-to-complete." class="section level4">
+<h4>(I did not run the code with markdown file. It took to much time to complete.)</h4>
+<pre class="r"><code># twitterText &lt;- gsub(&quot;(\\.|\\,|\\?|\\!|\\;|\\&amp;|\\(|\\)|\\:|[\&quot;]|\\-\\-|\\=| \\- |\\#| \\'|\\' )&quot;,&quot;{\\1}&quot;,twitter)
+# rm(twitter)
+# twitterText &lt;- tolower(twitterText)
+# twitterTokens &lt;- strsplit(twitterText,&quot;\\{.?}| &quot;)
+# twitterTokens &lt;- unlist(twitterTokens)</code></pre>
+<p>This data transform is Tokenlize. I repeat this with news and blog text.</p>
 </div>
-<div id="exporate-data" class="section level1">
-<h1>Exporate Data</h1>
+</div>
+<div id="exploratory-analysis" class="section level1">
+<h1>Exploratory analysis</h1>
 </div>
 
 

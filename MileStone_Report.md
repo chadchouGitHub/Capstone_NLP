@@ -9,6 +9,7 @@ This is report for Capstone Project. In this project, I demonstrate that I've do
 (Most of the R code will not show up in this report, but you can find them in my github account. )
 
 # Data Collection
+Three text files are collected from twitter, news, and blogs. This data are download from Coursera Capston website. In this report, I use English data set. 
 
 
 # Data Preview
@@ -44,12 +45,33 @@ print(tableSummary)
 ## news    1010242 34372530 205243643
 ## blogs    899288 37334147 208623081
 ```
-Next, I will use readline() to get each date set into R for Data Transform.
+Next, I will use readLines() to get each date set into R for Data Transform.
+Because each file is very large. I will need to process one by one. 
+
 
 # Data Transform
+Before I can analysis the text in each file. I will need to sperate non-text character from text character. Therefor I put a "{ }" to non-text character first, then split text with "{ }". The detials of the example process in twitter text list below.
+First, put { } around non-text characters, and assign to vector twitterText.
+Second, remove twitter from memory, to light the loading of computer.
+Third, change all text to low case.
+Forth, split string text by  "{ }".
+Fifth, unlist each element in the vector.
+The example code is here: 
+
+#### (I did not run the code with markdown file. It took to much time to complete.)
+
+```r
+# twitterText <- gsub("(\\.|\\,|\\?|\\!|\\;|\\&|\\(|\\)|\\:|[\"]|\\-\\-|\\=| \\- |\\#| \\'|\\' )","{\\1}",twitter)
+# rm(twitter)
+# twitterText <- tolower(twitterText)
+# twitterTokens <- strsplit(twitterText,"\\{.?}| ")
+# twitterTokens <- unlist(twitterTokens)
+```
+This data transform is Tokenlize. 
+I repeat this with news and blog text.
 
 
-# Exporate Data
+# Exploratory analysis
 
 
 

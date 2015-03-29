@@ -15,7 +15,7 @@ rownames(tableSummary)<- c("twitter","news","blogs")
 colnames(tableSummary)<- c("line","words","size")
 print(tableSummary)
 #-------------------------------------------------------------------
-
+## Use readLines() to reading each data into R. 
 #--------------------------------------------------------------------
 twitter <- readLines("final/en_US/en_US.twitter.txt", encoding = 'UTF-8')
 news<- readLines('final/en_US/en_US.news.txt', encoding = 'UTF-8')
@@ -27,5 +27,7 @@ subenn <- enn[sample(1:length(enn),20000)]
 set.seed(1)
 subenb <- enb[sample(1:length(enb),30000)]
 #-------------------------------------------------------------------
-
+twitterText <- gsub("(\\.|\\,|\\?|\\!|\\;|\\&|\\(|\\)|\\:|[\"]|\\-\\-|\\=| \\- |\\#| \\'|\\' )","{\\1}",twitter)
+newsText <- gsub("(\\.|\\,|\\?|\\!|\\;|\\&|\\(|\\)|\\:|[\"]|\\-\\-|\\=| \\- |\\#| \\'|\\' )","{\\1}",news)
+blogsText <- gsub("(\\.|\\,|\\?|\\!|\\;|\\&|\\(|\\)|\\:|[\"]|\\-\\-|\\=| \\- |\\#| \\'|\\' )","{\\1}",blogs)
 
