@@ -61,11 +61,37 @@ The example code is here:
 # twitterText <- tolower(twitterText)
 # twitterTokens <- strsplit(twitterText,"\\{.?}| ")
 # twitterTokens <- unlist(twitterTokens)
-
 ```
-This data transform is Tokenlize. 
+This data transform is Tokenization. 
 I repeat this with news and blog text.
 
+### A Summary of tokenization files.
+
+```{r}
+#twitterT<-length(twitterTokens)
+twitterT <- c(35261564)
+#newsT <- length(newsTokens)
+newsT <- c(38803501)
+#blogsT <- length(blogsTokens)
+blogsT <- c(41609972)
+# typeOfwordsT <- length(twitterTokenCount)
+typeOfwordsT <- c(524166)
+# typeOfwordsN <- length(newsTokenCount)
+typeOfwordsN <- c(425176)
+# typeOfwordsB <- length(blogsTokenCount)
+typeOfwordsB <- c(540783)
+rT <- round(c(twitterT/typeOfwordsT))
+rN <- round(c(newsT/typeOfwordsN))
+rB <- round(c(blogsT/typeOfwordsB))
+tokenSummary<- as.data.frame(rbind(twitterT,newsT,blogsT))
+wordSummary<- as.data.frame(rbind(typeOfwordsT,typeOfwordsN,typeOfwordsB))
+repeatToken <- as.data.frame(rbind(rT,rN,rB))
+totalSummary <- as.data.frame(cbind(tokenSummary[,1],wordSummary[,1],repeatToken[,1]))
+rownames(totalSummary)<- c("twitter","news","blogs")
+colnames(totalSummary)<- c("tokensNo","wordsNo","repeatToken")
+
+print(totalSummary)
+```
 
 # Exploratory analysis
 

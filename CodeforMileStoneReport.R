@@ -28,6 +28,38 @@ set.seed(1)
 subenb <- enb[sample(1:length(enb),30000)]
 #-------------------------------------------------------------------
 twitterText <- gsub("(\\.|\\,|\\?|\\!|\\;|\\&|\\(|\\)|\\:|[\"]|\\-\\-|\\=| \\- |\\#| \\'|\\' )","{\\1}",twitter)
-newsText <- gsub("(\\.|\\,|\\?|\\!|\\;|\\&|\\(|\\)|\\:|[\"]|\\-\\-|\\=| \\- |\\#| \\'|\\' )","{\\1}",news)
-blogsText <- gsub("(\\.|\\,|\\?|\\!|\\;|\\&|\\(|\\)|\\:|[\"]|\\-\\-|\\=| \\- |\\#| \\'|\\' )","{\\1}",blogs)
+rm(twitter)
+twitterText <- tolower(twitterText)
+twitterTokens <- strsplit(twitterText,"\\{.?}| ")
+twitterTokens <- unlist(twitterTokens)
+rm(twitterText)
 
+newsText <- gsub("(\\.|\\,|\\?|\\!|\\;|\\&|\\(|\\)|\\:|[\"]|\\-\\-|\\=| \\- |\\#| \\'|\\' )","{\\1}",news)
+rm(news)
+newsText <- tolower(newsText)
+newsTokens <- strsplit(newsText,"\\{.?}| ")
+newsTokens <- unlist(newsTokens)
+rm(newsText)
+
+blogsText <- gsub("(\\.|\\,|\\?|\\!|\\;|\\&|\\(|\\)|\\:|[\"]|\\-\\-|\\=| \\- |\\#| \\'|\\' )","{\\1}",blogs)
+rm(blogs)
+blogsText <- tolower(blogsText)
+blogsTokens <- strsplit(blogsText,"\\{.?}| ")
+blogsTokens <- unlist(blogsTokens)
+rm(blogsText)
+ twitterT<-summary(twitterTokens) 
+ newsT <- summary(newsTokens)
+ blogsT <- summary(blogsTokens)
+
+tokenSummary<- as.data.frame(rbind(twitterT,newsT,blogsT))
+
+rownames(tokenSummary)<- c("twitter","news","blogs")
+
+twitterTokenCount <- sort(table(twitterTokens), decreasing=TRUE)
+newsTokenCount <- sort(table(newsTokens), decreasing=TRUE)
+blogsTokenCount<- sort(table(blogsTokens), decreasing=TRUE)
+typeOfwordsT <- length(twitterTokenCount)
+typeOfwordsN <- length(newsTokenCount)
+typeOfwordsB <- length(blogsTokenCount)
+
+#---------------------------------------------------------------------

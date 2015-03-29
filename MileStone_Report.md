@@ -67,15 +67,40 @@ The example code is here:
 # twitterTokens <- strsplit(twitterText,"\\{.?}| ")
 # twitterTokens <- unlist(twitterTokens)
 ```
-This data transform is Tokenlize. 
+This data transform is Tokenization. 
 I repeat this with news and blog text.
 
+### A Summary of tokenization files.
+
+
+```r
+#twitterT<-length(twitterTokens)
+twitterT <- c(35261564)
+#newsT <- length(newsTokens)
+newsT <- c(38803501)
+#blogsT <- length(blogsTokens)
+blogsT <- c(41609972)
+
+tokenSummary<- as.data.frame(rbind(twitterT,newsT,blogsT))
+
+rownames(tokenSummary)<- c("twitter","news","blogs")
+colnames(tokenSummary)<- c("lenght")
+
+print(tokenSummary)
+```
+
+```
+##           lenght
+## twitter 35261564
+## news    38803501
+## blogs   41609972
+```
 
 # Exploratory analysis
 
 
 
 
-
+# Summary
 
 

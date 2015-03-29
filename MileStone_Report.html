@@ -113,11 +113,34 @@ colnames(tableSummary)&lt;- c(&quot;line&quot;,&quot;words&quot;,&quot;size&quot
 # twitterText &lt;- tolower(twitterText)
 # twitterTokens &lt;- strsplit(twitterText,&quot;\\{.?}| &quot;)
 # twitterTokens &lt;- unlist(twitterTokens)</code></pre>
-<p>This data transform is Tokenlize. I repeat this with news and blog text.</p>
+<p>This data transform is Tokenization. I repeat this with news and blog text.</p>
+</div>
+<div id="a-summary-of-tokenization-files." class="section level3">
+<h3>A Summary of tokenization files.</h3>
+<pre class="r"><code>#twitterT&lt;-length(twitterTokens)
+twitterT &lt;- c(35261564)
+#newsT &lt;- length(newsTokens)
+newsT &lt;- c(38803501)
+#blogsT &lt;- length(blogsTokens)
+blogsT &lt;- c(41609972)
+
+tokenSummary&lt;- as.data.frame(rbind(twitterT,newsT,blogsT))
+
+rownames(tokenSummary)&lt;- c(&quot;twitter&quot;,&quot;news&quot;,&quot;blogs&quot;)
+colnames(tokenSummary)&lt;- c(&quot;lenght&quot;)
+
+print(tokenSummary)</code></pre>
+<pre><code>##           lenght
+## twitter 35261564
+## news    38803501
+## blogs   41609972</code></pre>
 </div>
 </div>
 <div id="exploratory-analysis" class="section level1">
 <h1>Exploratory analysis</h1>
+</div>
+<div id="summary" class="section level1">
+<h1>Summary</h1>
 </div>
 
 
