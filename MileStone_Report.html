@@ -81,7 +81,7 @@ img {
 <div id="data-preview" class="section level1">
 <h1>Data Preview</h1>
 <p>The Firs Step to begin is to know how many lines, words, and size of each data. This will help to decide how much information I will need to extract out from data set. Working on over size data will crash my computer, and working on not enough data will give wrong information.</p>
-<p>Bellow, I use system command “wc” to get information of each file in lines, words, and file size. (When I direct use system() in the code, the markdown will halt in process. So I assign the “wc” output result to each vector. This is just for report. )</p>
+<p>Bellow, I use system command “wc” to get information of each file in lines, words, and file size. (When I use system() in the code, the knit will halt all process. So I assign the “wc” output result to each vector. This is just for report. You can find my R code at link above.)</p>
 <pre class="r"><code>#twitter &lt;- system('wc -lwm final/en_US/en_US.twitter.txt',intern = T)
 twitter  &lt;-&quot;2360148 30373603 166816544 final/en_US/en_US.twitter.txt&quot;
 # news &lt;- system('wc -lwm final/en_US/en_US.news.txt',intern = T)
@@ -107,8 +107,8 @@ colnames(tableSummary)&lt;- c(&quot;line&quot;,&quot;words&quot;,&quot;size&quot
 <div id="data-transform" class="section level1">
 <h1>Data Transform</h1>
 <p>Before I can analysis the text in each file. I will need to sperate non-text character from text character. Therefor I put a “{ }” to non-text character first, then split text with “{ }”. The detials of the example process in twitter text list below. First, put { } around non-text characters, and assign to vector twitterText. Second, remove twitter from memory, to light the loading of computer. Third, change all text to low case. Forth, split string text by “{ }”. Fifth, unlist each element in the vector. The example code is here:</p>
-<div id="i-did-not-run-the-code-with-markdown-file.-it-took-to-much-time-to-complete." class="section level4">
-<h4>(I did not run the code with markdown file. It took to much time to complete.)</h4>
+<div id="i-did-not-run-the-code-when-i-use-knit-to-make-markdown-file.-it-took-to-much-time-to-complete." class="section level4">
+<h4>(I did not run the code when I use knit() to make markdown file. It took to much time to complete.)</h4>
 <pre class="r"><code># twitterText &lt;- gsub(&quot;(\\.|\\,|\\?|\\!|\\;|\\&amp;|\\(|\\)|\\:|[\&quot;]|\\-\\-|\\=| \\- |\\#| \\'|\\' )&quot;,&quot;{\\1}&quot;,twitter)
 # rm(twitter)
 # twitterText &lt;- tolower(twitterText)

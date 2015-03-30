@@ -11,6 +11,7 @@ https://github.com/chadchouGitHub/Capstone_NLP/blob/master/CodeforMileStoneRepor
 This is report for Capstone Project. In this project, I demonstrate that I've downloaded the data and have successfully loaded it in. I also create a basic report of summary statistics about the data sets, and report interesting findings that I amassed so far. I will make a plan for creating a prediction algorithm and Shiny app, and I would like your feedback in this plan.
 (Most of the R code will not show up in this report, but you can find them in my github account. )
 
+
 # Data Collection
 Three text files are collected from twitter, news, and blogs. This data are download from Coursera Capston website. In this report, I use English data set. 
 
@@ -18,7 +19,7 @@ Three text files are collected from twitter, news, and blogs. This data are down
 # Data Preview
 The Firs Step to begin is to know how many lines, words, and size of each data. This will help to decide how much information I will need to extract out from data set. Working on over size data will crash my computer, and working on not enough data will give wrong information.
 
-Bellow, I use system command "wc" to get information of each file in lines, words, and file size. (When I direct use system() in the code, the markdown will halt in process. So I assign the "wc" output result to each vector. This is just for report. )
+Bellow, I use system command "wc" to get information of each file in lines, words, and file size. (When I use system() in the code, the knit will halt all process. So I assign the "wc" output result to each vector. This is just for report. You can find my R code at link above.)
 
 ```r
 #twitter <- system('wc -lwm final/en_US/en_US.twitter.txt',intern = T)
@@ -61,7 +62,7 @@ Forth, split string text by  "{ }".
 Fifth, unlist each element in the vector.
 The example code is here: 
 
-#### (I did not run the code with markdown file. It took to much time to complete.)
+#### (I did not run the code when I use knit() to make markdown file. It took to much time to complete.)
 
 ```r
 # twitterText <- gsub("(\\.|\\,|\\?|\\!|\\;|\\&|\\(|\\)|\\:|[\"]|\\-\\-|\\=| \\- |\\#| \\'|\\' )","{\\1}",twitter)
