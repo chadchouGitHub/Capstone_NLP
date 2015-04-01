@@ -58,6 +58,7 @@ tokenSummary<- as.data.frame(rbind(twitterT,newsT,blogsT))
 rownames(tokenSummary)<- c("twitter","news","blogs")
 
 twitterTokenCount <- sort(table(twitterTokens), decreasing=TRUE)
+## Very important: Use table() to count frequency of each word.
 newsTokenCount <- sort(table(newsTokens), decreasing=TRUE)
 blogsTokenCount<- sort(table(blogsTokens), decreasing=TRUE)
 typeOfwordsT <- length(twitterTokenCount)

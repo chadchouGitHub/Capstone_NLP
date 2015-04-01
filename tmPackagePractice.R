@@ -26,3 +26,18 @@ corpus <- tm_map(corpus, content_transformer(tolower)) #lowercasing all contents
 corpus <- tm_map(corpus, removePunctuation) # removing special characters
 
 
+# I did not use this, but this is the way to remove specific words from corpus 
+# badWordsVector <- VectorSource(readLines("final/bad_words.txt"))
+# corpus <- tm_map(corpus, removeWords, badWordsVector)
+
+cleanText<-data.frame(text=unlist(sapply(corpus, `[`, "content")), stringsAsFactors=F)
+
+## I have no idea about this " sapply(corpus, `[`, "content") " corpus is VCorpus type
+
+# Converting Corpus to Data Frame for processing by the RWeka functions
+## Load RWeka first.
+
+
+# Onegram <- NGramTokenizer(corpus, Weka_control(min = 1, max = 1,delimiters = " \\r\\n\\t.,;:\"()?!"))
+# Directly use Weka package to NGramTokenizer corpus. it will show lot of numbers, symbol,...Why?
+# It was removed before? 
