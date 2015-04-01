@@ -16,6 +16,7 @@ library("ggplot2") #Charting functionality
 # tm_map() is in the tm package.
 
 twitter <- readLines("final/en_US/en_US.twitter.txt", encoding = 'UTF-8')
+twitter <- twitter[sample(1:length(twitter),10000)] 
 tiny <- paste(twitter)
 corpus <- VectorSource(tiny)
 corpus <- VCorpus(corpus) # Building the main corpus
@@ -23,4 +24,5 @@ corpus <- tm_map(corpus, removeNumbers) # removing numbers
 corpus <- tm_map(corpus, stripWhitespace) # removing whitespaces
 corpus <- tm_map(corpus, content_transformer(tolower)) #lowercasing all contents
 corpus <- tm_map(corpus, removePunctuation) # removing special characters
+
 
