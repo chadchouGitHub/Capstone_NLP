@@ -36,7 +36,10 @@ cleanText<-data.frame(text=unlist(sapply(corpus, `[`, "content")), stringsAsFact
 ## I can find reference from here " http://stackoverflow.com/questions/24703920/r-tm-package-vcorpus-corpus-to-dataframe "
 ## But I still don't know what it mean.
 # Converting Corpus to Data Frame for processing by the RWeka functions
+
+
 ## Load RWeka first.
+## NGramTokenizer() is RWeka function
 
 oneToken <- NGramTokenizer(cleanText, Weka_control(min = 1, max = 1))
 
@@ -45,5 +48,52 @@ oneToken <- NGramTokenizer(cleanText, Weka_control(min = 1, max = 1))
 # It was removed before? 
 biToken <- NGramTokenizer(cleanText, Weka_control(min = 2, max = 2, delimiters = " \\r\\n\\t.,;:\"()?!"))
 triToken <- NGramTokenizer(cleanText, Weka_control(min = 3, max = 3, delimiters = " \\r\\n\\t.,;:\"()?!"))
+
+# Use table() to count the frequence of each token table() is base function.
+# Then use data.frame() to convert the table into DF. In the mean time the DF is arrange by words not 
+# the frequence (word counting).
+
+one <- data.frame(table(oneToken))
+two <- data.frame(table(biToken))
+tri <- data.frame(table(triToken))
+# Find name of each col in these three DF.
+colnames(one)
+colnames(two)
+colnames(tri)
+
+oneSorted <- one[order(one$oneToken,decreasing = F),]
+twoSorted <- two[order(two$biToken,decreasing = F),]
+triSorted <- tri[order(tri$triToken,decreasing = F),]
+
+# Take a look of the DF. You will find many rows have useless tokens. 
+# If I have a list of dictionary words, I can keep the row that only appear to be normal word.
+# In the mean time I will just subset the useless tokens.
+oneSorted <- oneSorted[9:nrow(oneSorted),]
+twoSorted <- twoSorted[11:nrow(twoSorted),]
+triSorted <- triSorted[17:nrow(triSorted),]
+
+## Sorting again to see the non A-Z words
+
+oneSorted <- oneSorted[order(one$oneToken,decreasing = T),]
+twoSorted <- twoSorted[order(two$biToken,decreasing = T),]
+triSorted <- triSorted[order(tri$triToken,decreasing = T),]
+
+## Subset out the non-A-Z rows
+oneSorted <- oneSorted[18:nrow(oneSorted),]
+twoSorted <- twoSorted[20:nrow(twoSorted),]
+triSorted <- triSorted[26:nrow(triSorted),]
+
+## It is not really need to remove all those non-A-Z or tokens, but it look beter in the data.
+
+# Now I can sort for freq
+# Here is sorting the DF by "Freq" col. I think it is useful to Sorting with word first, and take a look. 
+oneSorted <- oneSorted[order(oneSorted$Freq,decreasing = TRUE),]
+twoSorted <- twoSorted[order(twoSorted$Freq,decreasing = TRUE),]
+triSorted <- triSorted[order(triSorted$Freq,decreasing = TRUE),]
+
+## After sorting through DF, the DF has a row.name col 
+## But it is not count into the length?? Sometimes it disappear..???
+
+
 
 
