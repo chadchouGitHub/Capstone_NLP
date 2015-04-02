@@ -33,11 +33,17 @@ corpus <- tm_map(corpus, removePunctuation) # removing special characters
 cleanText<-data.frame(text=unlist(sapply(corpus, `[`, "content")), stringsAsFactors=F)
 
 ## I have no idea about this " sapply(corpus, `[`, "content") " corpus is VCorpus type
-
+## I can find reference from here " http://stackoverflow.com/questions/24703920/r-tm-package-vcorpus-corpus-to-dataframe "
+## But I still don't know what it mean.
 # Converting Corpus to Data Frame for processing by the RWeka functions
 ## Load RWeka first.
 
+oneToken <- NGramTokenizer(cleanText, Weka_control(min = 1, max = 1))
 
 # Onegram <- NGramTokenizer(corpus, Weka_control(min = 1, max = 1,delimiters = " \\r\\n\\t.,;:\"()?!"))
 # Directly use Weka package to NGramTokenizer corpus. it will show lot of numbers, symbol,...Why?
 # It was removed before? 
+biToken <- NGramTokenizer(cleanText, Weka_control(min = 2, max = 2, delimiters = " \\r\\n\\t.,;:\"()?!"))
+triToken <- NGramTokenizer(cleanText, Weka_control(min = 3, max = 3, delimiters = " \\r\\n\\t.,;:\"()?!"))
+
+
