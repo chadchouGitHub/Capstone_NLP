@@ -92,12 +92,18 @@ length(hateTwitter)
 
 longStatTwitter<- grep("A computer once beat me at chess, but it was no match for me at kickboxing",nLpTwitter, value=T)
 
-getblog<- grep("and I'd eat",nLpBlogs, value=T)
-gettwitter<- grep("and I'd eat",nLpTwitter, value=T)
-getnews<- grep("and I'd eat",nLpNews, value=T)
+getblog<- grep("to see[^ ]* this weekend",nLpBlogs, value=T)
+gettwitter<- grep("to see[^ ]* this weekend",nLpTwitter, value=T)
+getnews<- grep("to see[^ ]* this weekend",nLpNews, value=T)
 
+## Here is me practice regEx with [^]*
+test<- getblog[1:20]
 
+test2<- gsub("to see[^ ]* this ","to see rrr rrr rrr this",test, ignore.case=T)
+test3<- paste(test,test2)
+gettest3<- grep("to see[^ ]* this ",test3, value=T)
 
+setdiff(test3,gettest3)
 ```
 
 
