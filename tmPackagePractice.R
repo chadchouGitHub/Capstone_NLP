@@ -94,6 +94,11 @@ triSorted <- triSorted[order(triSorted$Freq,decreasing = TRUE),]
 ## After sorting through DF, the DF has a row.name col 
 ## But it is not count into the length?? Sometimes it disappear..???
 
+## You can save you Data like this, and load back later. 
+## In this way, you don't need to keep read from text file every time.
+save(oneSorted,twoSorted,triSorted,file='sortedOneTwoTri.RData')
+rm(oneSorted,twoSorted,triSorted)
+load('sortedOneTwoTri.RData')
 
 
 

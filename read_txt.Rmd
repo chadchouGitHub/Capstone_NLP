@@ -92,9 +92,9 @@ length(hateTwitter)
 
 longStatTwitter<- grep("A computer once beat me at chess, but it was no match for me at kickboxing",nLpTwitter, value=T)
 
-getblog<- grep("must be asleep",blogs, value=T)
-gettwitter<- grep("must be asleep",twitter, value=T)
-getnews<- grep("must be asleep",news, value=T)
+getblog<- grep("and I'd eat",nLpBlogs, value=T)
+gettwitter<- grep("and I'd eat",nLpTwitter, value=T)
+getnews<- grep("and I'd eat",nLpNews, value=T)
 
 
 
