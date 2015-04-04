@@ -100,5 +100,15 @@ save(oneSorted,twoSorted,triSorted,file='sortedOneTwoTri.RData')
 rm(oneSorted,twoSorted,triSorted)
 load('sortedOneTwoTri.RData')
 
+# add ranking col in the df. I find reference from here.
+# http://stackoverflow.com/questions/19403196/ranking-dataframe-columns-in-r
+# df$Ranking <- ave( df$Margin, df$Category, FUN=rank )
+oneSorted$Ranking <- ave(-oneSorted$Freq, FUN=rank)
+twoSorted$Ranking <- ave(-twoSorted$Freq, FUN=rank)
+triSorted$Ranking <- ave(-triSorted$Freq, FUN=rank)
+
+## Note: Use $ to add a col into df 
+## Note: The triSorted has some tokens have same Freq, So the Ranking share between two tokens with decimal
+
 
 
