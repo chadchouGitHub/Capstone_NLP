@@ -105,7 +105,7 @@ load('sortedOneTwoTri.RData')
 # df$Ranking <- ave( df$Margin, df$Category, FUN=rank )
 oneSorted$Ranking <- ave(-oneSorted$Freq, FUN=rank)
 twoSorted$Ranking <- ave(-twoSorted$Freq, FUN=rank)
-triSorted$Ranking <- ave(-triSorted$Freq, FUN=rank)
+triSorted$Ranking <- round(ave(-triSorted$Freq, FUN=rank))
 
 ## Note: Use $ to add a col into df 
 ## Note: The triSorted has some tokens have same Freq, So the Ranking share between two tokens with decimal
