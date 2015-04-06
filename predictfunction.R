@@ -1,8 +1,10 @@
 ## Write a function to out put a word base on a word inputed.
 load('sortedOneTwoTri.RData')
 predictF <- function(x){
-        matchW <-paste(x,"") ## the past function will add a blank space after x vector, 
+        matchW <-paste("^",x," ",sep = "") ## the past function will add a blank space after x vector, 
                                 ## So the double quaotation don't need a space. 
+                                ## To avoid the space, I need to use spe = "" . Once I use this
+                                ## I can paste my own " " space in the place I need.
          rOws<- grep(matchW,twoSorted$biToken)
          y <- twoSorted[rOws,]
         return(y)
