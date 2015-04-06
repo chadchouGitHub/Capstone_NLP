@@ -18,3 +18,31 @@ matchW1<-paste(x," ")
 matchW2<-paste(x,"")
 matchW1
 matchW2
+
+
+ test2<- gsub("for ","",test$biToken) ##Remove "for " from biToken variable and give me a list of 
+## words that fellow with for in biToken.
+
+l <- length(test2)
+z <- data.frame(Date=as.Date(character()),
+                 File=character(), 
+                 User=character(), 
+                 stringsAsFactors=FALSE) 
+
+for (i in 1:l)
+        {
+                matchWord <- paste(test2[i])
+                newRows<- subset(oneSorted, oneToken == matchWord)
+        z <- rbind(z,newRows)
+        }
+
+
+
+
+
+
+
+
+
+
+
