@@ -4,8 +4,8 @@ load('sortedOneTwoTri.RData')
 ###
 
 
-## prefict word function--------------------
-predictF <- function(x){
+## prefict word function---(find the candidates in bitoken)-----------------
+candiateF <- function(x){
         matchW <-paste("^",x," ",sep = "") ## the past function will add a blank space after x vector, 
                                 ## So the double quaotation don't need a space. 
                                 ## To avoid the space, I need to use spe = "" . Once I use this
@@ -15,7 +15,7 @@ predictF <- function(x){
         return(y)
 }
 
-## prefict word function--------------------
+## prefict word function---(find the candidates in bitoken)-----------------
 
 ## Here is the test to see the space after paste() function.
 x <- "for"
@@ -29,6 +29,7 @@ matchW2
 ## words that fellow with for in biToken.
 
 l <- length(test2)
+## make a empty df for for loop
 z <- data.frame(Date=as.Date(character()),
                  File=character(), 
                  User=character(), 
