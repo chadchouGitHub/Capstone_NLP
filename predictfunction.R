@@ -1,5 +1,10 @@
 ## Write a function to out put a word base on a word inputed.
 load('sortedOneTwoTri.RData')
+
+###
+
+
+## prefict word function--------------------
 predictF <- function(x){
         matchW <-paste("^",x," ",sep = "") ## the past function will add a blank space after x vector, 
                                 ## So the double quaotation don't need a space. 
@@ -10,7 +15,7 @@ predictF <- function(x){
         return(y)
 }
 
-
+## prefict word function--------------------
 
 ## Here is the test to see the space after paste() function.
 x <- "for"
@@ -44,11 +49,19 @@ for (i in 1:l)
 triWx <-c("I am your father")
 triWx
 
-splitTriWx <- unlist(strsplit(triWx, " "))
-lastWord <- splitTriWx[length(splitTriWx)]
+### last word extract from input text function
+
+### lastWordF function-----------------------------------------
+lastWordF <- function(x){
+        splitTriWx <- unlist(strsplit(x, " "))
+        y<- splitTriWx[length(splitTriWx)]
+        return(y)
+}
+
+### lastWordF function-----------------------------------------
 
 
-
+lastWordF(triWx)
 
 
 
