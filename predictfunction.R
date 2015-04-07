@@ -37,7 +37,15 @@ for (i in 1:l)
         }
 
 
+#### Here is the code to search tritoken
+### here is code to get the last word of input
+### triWx is the words that input more than 1
 
+triWx <-c("I am your father")
+triWx
+
+splitTriWx <- unlist(strsplit(triWx, " "))
+lastWord <- splitTriWx[length(splitTriWx)]
 
 
 
