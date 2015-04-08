@@ -2,7 +2,14 @@
 load('sortedOneTwoTri.RData')
 
 ###
+### lastWordF function-----------------------------------------
+lastWordF <- function(x){
+        splitTriWx <- unlist(strsplit(x, " "))
+        y<- splitTriWx[length(splitTriWx)]
+        return(y)
+}
 
+### lastWordF function-----------------------------------------
 
 ## prefict word function---(find the candidates in bitoken)-----------------
 candiateF <- function(x){
@@ -31,7 +38,7 @@ matchW2
 ## words that fellow with for in biToken.
 
 
-## Extract a list of words from candidate DF to match the oneSorted DF-----------
+## Extract a list of words from candidateF to match the oneSorted DF-----------
 candiListW <- function(x) {
         
                 l <- length(x)
@@ -50,6 +57,7 @@ candiListW <- function(x) {
                                 return(z)
                         }
 
+## Extract a list of words from candidate DF to match the oneSorted DF-----------
 #### Here is the code to search tritoken
 ### here is code to get the last word of input
 ### triWx is the words that input more than 1
@@ -69,9 +77,13 @@ lastWordF <- function(x){
 ### lastWordF function-----------------------------------------
 
 
-lastWordF(triWx)
 
+### lastTwoWordF function-----------------------------------------
+lastTwoWordF <- function(x){
+        splitWx <- unlist(strsplit(x, " "))
+        y<- paste(splitWx[(length(splitWx)-1)],splitWx[length(splitWx)])
+        return(y)
+}
 
-
-
+### lastTwoWordF function-----------------------------------------
 
