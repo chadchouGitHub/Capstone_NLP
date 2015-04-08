@@ -12,7 +12,9 @@ candiateF <- function(x){
                                 ## I can paste my own " " space in the place I need.
          rOws<- grep(matchW,twoSorted$biToken)
          y <- twoSorted[rOws,]
-        return(y)
+         z<- gsub(paste(x,""),"",y$biToken) ##Remove "for " from biToken variable and give me a list of 
+        ## words that fellow with for in biToken.
+        return(z)
 }
 
 ## prefict word function---(find the candidates in bitoken)-----------------
@@ -28,20 +30,25 @@ matchW2
  test2<- gsub("for ","",test$biToken) ##Remove "for " from biToken variable and give me a list of 
 ## words that fellow with for in biToken.
 
-l <- length(test2)
-## make a empty df for for loop
-z <- data.frame(Date=as.Date(character()),
-                 File=character(), 
-                 User=character(), 
-                 stringsAsFactors=FALSE) 
 
-for (i in 1:l)
-        {
-                matchWord <- paste(test2[i])
-                newRows<- subset(oneSorted, oneToken == matchWord)
-        z <- rbind(z,newRows)
-        }
+## Extract a list of words from candidate DF to match the oneSorted DF-----------
+candiListW <- function(x) {
+        
+                l <- length(x)
+                ## make a empty df for for loop
+                z <- data.frame(Date=as.Date(character()),
+                                        File=character(), 
+                                        User=character(), 
+                                        stringsAsFactors=FALSE) 
 
+                for (i in 1:l)
+                                {
+                                        matchWord <- paste(x[i])
+                                        newRows<- subset(oneSorted, oneToken == matchWord)
+                                        z <- rbind(z,newRows)
+                                }
+                                return(z)
+                        }
 
 #### Here is the code to search tritoken
 ### here is code to get the last word of input
