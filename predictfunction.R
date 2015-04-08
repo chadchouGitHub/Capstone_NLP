@@ -95,12 +95,13 @@ lastTwoWordF <- function(x){
 ### Run test with "I did ya" and expect to get did ya see
 
 
-triWx <-c("I excellent kidink") ## input "I did ya"
+triWx <-c("I did ya") ## input "I did ya"
 triWx
-test1 <- candiateF("kidink")
+test1 <- candiateF("ya")
 test2<- candiListW(test1)
 test3 <- lastTwoWordF(triWx)
-test4 <- paste(test3,test2$oneToken)
+test4 <- paste(test3,test2$oneToken)## past the lastTwoWords of input to candidate from oneSorted
+                                    ## Here is test2 DF.
 test4
 ### Run test with "I did ya" and expect to get did ya see
 
