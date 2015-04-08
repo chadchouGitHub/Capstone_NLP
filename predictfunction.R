@@ -43,7 +43,7 @@ candiListW <- function(x) {
         
                 l <- length(x)
                 ## make a empty df for for loop
-                z <- data.frame(Date=as.Date(character()),
+                y<- data.frame(Date=as.Date(character()),
                                         File=character(), 
                                         User=character(), 
                                         stringsAsFactors=FALSE) 
@@ -52,8 +52,10 @@ candiListW <- function(x) {
                                 {
                                         matchWord <- paste(x[i])
                                         newRows<- subset(oneSorted, oneToken == matchWord)
-                                        z <- rbind(z,newRows)
+                                        y<- rbind(y,newRows)
+                                        
                                 }
+                                z <- y[order(y$Ranking,decreasing = F),]
                                 return(z)
                         }
 
@@ -86,4 +88,50 @@ lastTwoWordF <- function(x){
 }
 
 ### lastTwoWordF function-----------------------------------------
+
+test1 <- candiateF("father")
+test2<- candiListW(test1)
+test3 <- lastTwoWordF(triWx)
+test4 <- paste(test3,test2$oneToken)
+test4
+
+
+triTokenF <- function(x) {
+        
+        l <- length(x)
+        ## make a empty df for for loop
+        y<- data.frame(Date=as.Date(character()),
+                       File=character(), 
+                       User=character(), 
+                       stringsAsFactors=FALSE) 
+        
+        for (i in 1:l)
+        {
+                matchWord <- paste(x[i])
+                newRows<- subset(triSorted, triToken == matchWord)
+                y<- rbind(y,newRows)
+                
+        }
+        if (nrow(y)>1){
+                        z <- y[order(y$Ranking,decreasing = F),]
+                        return(z)
+                 }
+        return(y)
+}
+
+## Extract a list of words from candidate DF to match the oneSorted DF-----------
+
+test5 <- triTokenF(test4)
+nrow(test5)
+
+
+## I make a random sample to test my triSorted extracting function.-----
+ nO<- sample(nrow(triSorted),5)
+
+ rTest<- as.character(triSorted[nO,]$triToken) ## need as.character() to convert the subset results
+                                                ## form "factor" type to "character" type
+
+test6 <- triTokenF(rTest)
+## I make a random sample to test my triSorted extracting function.-----
+
 
