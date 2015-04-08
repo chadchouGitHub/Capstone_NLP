@@ -1,5 +1,8 @@
 ## Write a function to out put a word base on a word inputed.
+## The sortedOneTwoTri.RData was made in tmPackagepractact.R file
+
 load('sortedOneTwoTri.RData')
+
 
 ###
 ### lastWordF function-----------------------------------------
@@ -92,9 +95,9 @@ lastTwoWordF <- function(x){
 ### Run test with "I did ya" and expect to get did ya see
 
 
-triWx <-c("I did ya") ## input "I did ya"
+triWx <-c("I excellent kidink") ## input "I did ya"
 triWx
-test1 <- candiateF("ya")
+test1 <- candiateF("kidink")
 test2<- candiListW(test1)
 test3 <- lastTwoWordF(triWx)
 test4 <- paste(test3,test2$oneToken)
@@ -133,7 +136,7 @@ nrow(test5)
 
 
 ## I make a random sample to test my triSorted extracting function.-----
- nO<- sample(nrow(triSorted),1)
+ nO<- sample(nrow(triSorted),2)
 
  rTest<- as.character(triSorted[nO,]$triToken) ## need as.character() to convert the subset results
                                                 ## form "factor" type to "character" type

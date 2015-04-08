@@ -90,6 +90,12 @@ triSorted <- triSorted[26:nrow(triSorted),]
 oneSorted <- oneSorted[order(oneSorted$Freq,decreasing = TRUE),]
 twoSorted <- twoSorted[order(twoSorted$Freq,decreasing = TRUE),]
 triSorted <- triSorted[order(triSorted$Freq,decreasing = TRUE),]
+### a row.names col show up after sorting the df use "NULL" to turn off the col
+### this row.Names col does not affect the DF, and also not in the length of DF. But it take 
+### memory space.
+rownames(oneSorted) <- NULL
+rownames(twoSorted) <- NULL
+rownames(triSorted) <- NULL
 
 ## After sorting through DF, the DF has a row.name col 
 ## But it is not count into the length?? Sometimes it disappear..???
