@@ -96,9 +96,9 @@ lastTwoWordF <- function(x){
 
 
 triWx <-c("I did ya") ## input "I did ya"
-triWx
-test1 <- candiateF("ya")
-test2<- candiListW(test1)
+lastWordF(triWx)
+test1 <- candiateF(lastWordF(triWx)) ## Just for test
+test2 <- candiListW(candiateF(lastWordF(triWx))) ## put my two function in my candiListW function 
 test3 <- lastTwoWordF(triWx)
 test4 <- paste(test3,test2$oneToken)## past the lastTwoWords of input to candidate from oneSorted
                                     ## Here is test2 DF.
@@ -131,6 +131,12 @@ triTokenF <- function(x) {
 }
 
 ### triSorted extraction from a list of triToken-------------------------
+
+
+
+
+
+
 
 test5 <- triTokenF(test4)
 nrow(test5)
