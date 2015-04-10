@@ -100,6 +100,12 @@ rownames(triSorted) <- NULL
 ## After sorting through DF, the DF has a row.name col 
 ## But it is not count into the length?? Sometimes it disappear..???
 
+## Only keep Ranking and Tokens, this will keep the data small, and less memory using.
+oneSorted <- oneSorted[,c(1,3)]
+twoSorted <- twoSorted[,c(1,3)]
+triSorted <- triSorted[,c(1,3)]
+
+
 ## You can save you Data like this, and load back later. 
 ## In this way, you don't need to keep read from text file every time.
 save(oneSorted,twoSorted,triSorted,file='sortedOneTwoTri.RData')
