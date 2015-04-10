@@ -58,55 +58,47 @@ candiListW <- function(x) {
                                         y<- rbind(y,newRows)
                                         
                                 }
-                                z <- y[order(y$Ranking,decreasing = F),]
+                                z <- y
+                                #z <- y[order(y$Ranking,decreasing = F),]
+                                if(nrow(z)>=10){
+                                        z <- z[1:10,]
+                                         }
                                 return(z)
                         }
 
-## Extract a list of words from candidate DF to match the oneSorted DF-----------
+## Extract a list of words from candidate DF to match the oneSorted DF----------
+
+
 #### Here is the code to search tritoken
 ### here is code to get the last word of input
-### triWx is the words that input more than 1
-
-triWx <-c("I did ya")
-triWx
-
 ### last word extract from input text function
 
-### lastWordF function-----------------------------------------
+### lastWordF function-----------------------------------------------------------------------
 lastWordF <- function(x){
         splitTriWx <- unlist(strsplit(x, " "))
         y<- splitTriWx[length(splitTriWx)]
         return(y)
 }
 
-### lastWordF function-----------------------------------------
+### lastWordF function----------------------------------------------------------------------
 
 
 
-### lastTwoWordF function-----------------------------------------
+### lastTwoWordF function-------------------------------------------------------------------
 lastTwoWordF <- function(x){
         splitWx <- unlist(strsplit(x, " "))
         y<- paste(splitWx[(length(splitWx)-1)],splitWx[length(splitWx)])
         return(y)
 }
 
-### lastTwoWordF function-----------------------------------------
-
-### Run test with "I did ya" and expect to get did ya see
+### lastTwoWordF function-------------------------------------------------------------------
 
 
-triWx <-c("I did ya") ## input "I did ya"
-lastWordF(triWx)
-test1 <- candiateF(lastWordF(triWx)) ## Just for test
-test2 <- candiListW(candiateF(lastWordF(triWx))) ## put my two function in my candiListW function 
-test3 <- lastTwoWordF(triWx)
-test4 <- paste(test3,test2$oneToken)## past the lastTwoWords of input to candidate from oneSorted
-                                    ## Here is test2 DF.
-test4
-### Run test with "I did ya" and expect to get did ya see
 
 
-### triSorted extraction from a list of triToken-------------------------
+
+
+### triSorted extraction from a list of triToken--------------------------------------------
 triTokenF <- function(x) {
         
         l <- length(x)
@@ -130,26 +122,30 @@ triTokenF <- function(x) {
         return(y)
 }
 
-### triSorted extraction from a list of triToken-------------------------
+### triSorted extraction from a list of triToken--------------------------------------------
 
 
 
-
-
-
-
+## Here is the test to get match out of triToken DF
+triWx <-c("What happen to") ## input "I did ya"
+lastWordF(triWx)
+test1 <- candiateF(lastWordF(triWx)) ## Just for test
+test2 <- candiListW(candiateF(lastWordF(triWx))) ## put my two function in my candiListW function 
+test3 <- lastTwoWordF(triWx)
+test4 <- paste(test3,test2$oneToken)## past the lastTwoWords of input to candidate from oneSorted
+## Here is test2 DF.
 test5 <- triTokenF(test4)
 nrow(test5)
 
 
-## I make a random sample to test my triSorted extracting function.-----
+## I make a random sample to test my triSorted extracting function.------------------------
  nO<- sample(nrow(triSorted),2)
 
  rTest<- as.character(triSorted[nO,]$triToken) ## need as.character() to convert the subset results
                                                 ## form "factor" type to "character" type
 
 test6 <- triTokenF(rTest)
-## I make a random sample to test my triSorted extracting function.-----
+## I make a random sample to test my triSorted extracting function.-----------------------
 
 
 
