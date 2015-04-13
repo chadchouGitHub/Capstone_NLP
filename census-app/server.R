@@ -11,9 +11,11 @@ shinyServer(function(input, output) {
                                                 ## outside the shinyServer()
                 })
         ## each output need to have a textOutput in the ui.R
-        output$text1 <- renderText({ 
+         
+        words<- renderText({ 
                 paste("You have selected", input$var)
         })
+        output$text1 <- words
         output$text2 <- renderText({ 
                 "You have selected"
         })
