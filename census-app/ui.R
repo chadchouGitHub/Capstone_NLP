@@ -19,7 +19,7 @@ shinyUI(fluidPage(
                 ),
                 
                 mainPanel(
-                        textOutput("text1"),
+                        textOutput("text1"), ## each textOutput need to has its output$ in the server.R
                         textOutput("text2"),
                         textOutput("text3")
                 )
