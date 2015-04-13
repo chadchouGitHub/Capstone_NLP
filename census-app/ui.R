@@ -1,10 +1,4 @@
-
-
-# Define UI for application that draws a histogram
-## Lesson 2 by make new ui.R and server.R 
-## position="right" in sidebarLayout, and html <h1> <h2>.... to h1(), h2()... in R
-## also many html text format. See after p().at line 38..
-## Lesson 3 Adding widgets
+## Lesson 4
 shinyUI(fluidPage(
         titlePanel("censusVis"),
         
@@ -15,8 +9,8 @@ shinyUI(fluidPage(
                         
                         selectInput("var", 
                                     label = "Choose a variable to display",
-                                    choices = list("Percent White", "Percent Black",
-                                                   "Percent Hispanic", "Percent Asian"),
+                                    choices = c("Percent White", "Percent Black",
+                                                "Percent Hispanic", "Percent Asian"),
                                     selected = "Percent White"),
                         
                         sliderInput("range", 
@@ -25,8 +19,8 @@ shinyUI(fluidPage(
                 ),
                 
                 mainPanel(
-                        
-                        )
+                        textOutput("text1"),
+                        textOutput("text2")
+                )
         )
-        
 ))
