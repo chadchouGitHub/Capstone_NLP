@@ -1,7 +1,13 @@
 # server.R
+library(maps)
+library(mapproj)
+source("census-app/helpers.R") # This will load percent_map function
+counties <- readRDS("census-app/data/counties.rds") ## loading data
+percent_map(counties$white, "darkgreen", "% white") ## make map... but the ledgen are too big to covery the map in preview.
 
-b <- c("is some thing I need to show you")
 
+# b <- c("is some thing I need to show you")
+##--------------------code above here will run only once in shiny-----------------------
 shinyServer(function(input, output) {
         d <- c("  !!! d() it is in the shinyServer")       
         a<- renderText({ 
