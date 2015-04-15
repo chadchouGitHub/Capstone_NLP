@@ -17,7 +17,7 @@ shinyUI(fluidPage(
    
       actionButton("get", "Get Stock"),
       
-      br(),
+      br(), # line break
       br(),
       
       checkboxInput("log", "Plot y axis on log scale", 

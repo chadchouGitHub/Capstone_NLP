@@ -1,7 +1,7 @@
 # server.R
 
 library(quantmod)
-source("helpers.R")
+#source("helpers.R")
 
 shinyServer(function(input, output) {
 
@@ -16,3 +16,22 @@ shinyServer(function(input, output) {
   })
   
 })
+
+
+##---------Example of use getSymbols() from quantmod package--------------------
+#
+# data <- getSymbols(
+#        "GE", src = "yahoo", ## src is a mthod to cll url or a script. Here is call "yahoo" script(method) from somewhere???
+#        from = "2014-01-01", 
+#        to = as.character(Sys.Date()), ## use system data as end date
+#        auto.assign = FALSE )
+#
+# the data type is xts (I think is is time series DF, matrix, or table)
+##---------Example of use getSymbols() from quantmod package--------------------
+
+
+
+
+
+
+
