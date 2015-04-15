@@ -1,7 +1,7 @@
 # server.R
 
 library(quantmod)
-#source("helpers.R")
+source("helpers.R")
 
 shinyServer(function(input, output) {
 
@@ -11,7 +11,7 @@ shinyServer(function(input, output) {
       to = input$dates[2],
       auto.assign = FALSE)
                  
-    chartSeries(data, theme = chartTheme("white"), 
+    chartSeries(data, theme = chartTheme("black"), ## chartSeries() is quantmod function.   
       type = "line", log.scale = input$log, TA = NULL)
   })
   
