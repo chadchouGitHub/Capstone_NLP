@@ -3,6 +3,13 @@
 ## A Cousera DATA Science capstone project
 ## Each function will flank between two  "## ------------function name-----------" lines
 
+###----------------------------------loading word ranking df-----------------------------------
+### Need to make sure the RData file is in the correct directory
+load('sortedOneTwoTri.RData')
+
+###----------------------------------loading word ranking df-----------------------------------
+
+
 ##-------------------------------------lastWordF function--------------------------------------
 ## This function is using to get the last word of input text.
 
