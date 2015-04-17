@@ -16,7 +16,7 @@ library("ggplot2") #Charting functionality
 # tm_map() is in the tm package.
 
 twitter <- readLines("final/en_US/en_US.twitter.txt", encoding = 'UTF-8')
-twitter <- twitter[sample(1:length(twitter),10000)] 
+twitter <- twitter[sample(1:length(twitter),100)] 
 tiny <- paste(twitter)
 corpus <- VectorSource(tiny)
 corpus <- VCorpus(corpus) # Building the main corpus
@@ -111,6 +111,27 @@ triSorted <- triSorted[,c(1,3)]
 save(oneSorted,twoSorted,triSorted,file='sortedOneTwoTri.RData')
 rm(oneSorted,twoSorted,triSorted)
 load('sortedOneTwoTri.RData')
+
+## ----I make a 100 line read to creat a biToken DF for testing my app----
+save(twoSorted,triSorted, file='sortedTwoForTest.RData')
+rm(twoSorted,triSorted)
+load('sortedTwoForTest.RData')
+
+##----------------------------------------------------------------------
+
+##---------------------combin two random row subset DF----------------
+
+df1 <- twoSorted[sample(nrow(twoSorted),50),]
+colnames(df1) <- c("token", "freq")
+df2 <- triSorted[sample(nrow(triSorted),50),]
+colnames(df2) <- c("token", "freq")
+mixDf <- rbind(df1,df2)
+
+##---------------------combin two random row subset DF----------------
+
+
+
+
 
 # add ranking col in the df. I find reference from here.
 # http://stackoverflow.com/questions/19403196/ranking-dataframe-columns-in-r
