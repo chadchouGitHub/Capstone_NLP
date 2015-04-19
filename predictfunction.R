@@ -167,7 +167,7 @@ triTokenF <- function(x,y) {
         
         for (i in 1:l)
         {
-                matchWord <- paste(x,y[i])
+                matchWord <- paste(x,y[i]) # put last two words with candidate list word together.
                 newRows<- subset(triSorted, triToken == matchWord)
                 w<- rbind(w,newRows)
                 
