@@ -98,7 +98,6 @@ lastTwoWordF <- function(x){
 
 
 
-
 ### triSorted extraction from a list of triToken--------------------------------------------
 triTokenF <- function(x) {
         
@@ -128,7 +127,8 @@ triTokenF <- function(x) {
 
 
 ## Here is the test to get match out of triToken DF
-triWx <-c("What happen to") ## input "I did ya"
+triWx <-c("In Order To Make") ## input "I did ya"
+triWx<- tolower(triWx)
 lastWordF(triWx)
 test1 <- candiateF(lastWordF(triWx)) ## Just for test
 test2 <- candiListW(candiateF(lastWordF(triWx))) ## put my two function in my candiListW function 
@@ -182,7 +182,8 @@ triTokenF <- function(x,y) {
 
 ### triSorted extraction from a list of triToken--------------------------------------------
 
-triWx <-c("how are you") ## input "I did ya"
+triWx <-c("I Don't Want To talk About") ## input "I did ya"
+triWx<- tolower(triWx)
 lastWordF(triWx)
 test2x <- lastTwoWordF(triWx)
 cListy <- candiateF(lastWordF(triWx))
