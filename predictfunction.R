@@ -156,8 +156,8 @@ triTokenF <- function(x,y) {
         l <- length(y)
         ## make a empty df for for loop
         if(l>=20){
-                y <- y[1:20]
-                l <- 20
+                y <- y[1:10]
+                l <- 10
         }
         
         w<- data.frame(Date=as.Date(character()),
@@ -182,7 +182,7 @@ triTokenF <- function(x,y) {
 
 ### triSorted extraction from a list of triToken--------------------------------------------
 
-triWx <-c("this is impossible") ## input "I did ya"
+triWx <-c("how are you") ## input "I did ya"
 lastWordF(triWx)
 test2x <- lastTwoWordF(triWx)
 cListy <- candiateF(lastWordF(triWx))

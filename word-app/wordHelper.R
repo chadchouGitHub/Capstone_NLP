@@ -61,8 +61,8 @@ triTokenF <- function(x,y) {
         l <- length(y)
         ## make a empty df for for loop
         if(l>=20){
-                y <- y[1:20]
-                l <- 20
+                y <- y[1:20] # Here to decide how make candidates use to find in triToken
+                l <- 20 # Also use to set the number of for loop
         }
         
         w<- data.frame(Date=as.Date(character()),
