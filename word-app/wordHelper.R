@@ -86,7 +86,33 @@ triTokenF <- function(x,y) {
 ### ------------------find match in triToke DF with lastTwoWord() + candidate list candidateF() ------------
 
 
-
+###-----------------------------predict a word from input words-----------------------------
+predictW <- function(x){
+        triWx <-c(x) ## input "I did ya"
+        triWx<- tolower(triWx)
+        l<- length(unlist(strsplit(triWx, " ")))
+        if( l == 1 ) 
+        {
+                lastWordF(triWx)
+                cList <- candiateF(lastWordF(triWx))
+                predictW <- cList[1]
+        }
+        if(l!=1)
+        {
+                lastWordF(triWx)
+                test2x <- lastTwoWordF(triWx)
+                cListy <- candiateF(lastWordF(triWx))
+                test3XYbeta<- triTokenF(test2x,cListy)
+                z <- as.character(test3XYbeta$triToken)
+                predict<- z[1]
+                predictW <- lastWordF(predict)
+        }
+        
+        
+        return(predictW)
+        
+}      
+###-----------------------------predict a word from input words-----------------------------
 
 
 

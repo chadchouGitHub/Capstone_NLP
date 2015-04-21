@@ -60,11 +60,12 @@ candiListW <- function(x) {
                                         
                                 }
                                 z <- y
-                                #z <- y[order(y$Ranking,decreasing = F),]
+                                z <- y[order(y$Ranking,decreasing = F),]
                                 if(nrow(z)>=10){
                                         z <- z[1:10,]
                                          }
-                                return(z)
+                                p <- as.character(z$oneToken)
+                                return(p[1])
                         }
 
 ## Extract a list of words from candidate DF to match the oneSorted DF----------
@@ -182,11 +183,38 @@ triTokenF <- function(x,y) {
 
 ### triSorted extraction from a list of triToken--------------------------------------------
 
-triWx <-c("I Don't Want To talk About") ## input "I did ya"
-triWx<- tolower(triWx)
-lastWordF(triWx)
-test2x <- lastTwoWordF(triWx)
-cListy <- candiateF(lastWordF(triWx))
-test3XYbeta<- triTokenF(test2x,cListy)
+
+###-----------------------------predict a word from input words-----------------------------
+predictW <- function(x){
+        triWx <-c(x) ## input "I did ya"
+        triWx<- tolower(triWx)
+        l<- length(unlist(strsplit(triWx, " ")))
+        if( l == 1 ) 
+            {
+                   lastWordF(triWx)
+                   cList <- candiateF(lastWordF(triWx))
+                   predictW <- cList[1]
+            }
+        if(l!=1)
+                {
+                lastWordF(triWx)
+                 test2x <- lastTwoWordF(triWx)
+                cListy <- candiateF(lastWordF(triWx))
+                test3XYbeta<- triTokenF(test2x,cListy)
+                 z <- as.character(test3XYbeta$triToken)
+                predict<- z[1]
+                predictW <- lastWordF(predict)
+                }
+ 
+
+        return(predictW)
+
+}      
+###-----------------------------predict a word from input words-----------------------------
+
+ mytest<- predictW("be")
+
+
+
 
 
