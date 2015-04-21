@@ -177,6 +177,7 @@ triTokenF <- function(x,y) {
                 z <- w[order(w$Ranking,decreasing = F),]
                 return(z)
         }
+        
         return(w)
 }
 ### ------------------find match in triToke DF with lastTwoWord() + candidate list candidateF() ------------
@@ -195,6 +196,7 @@ predictW <- function(x){
                    cList <- candiateF(lastWordF(triWx))
                    predictW <- cList[1]
             }
+        
         if(l!=1)
                 {
                 lastWordF(triWx)
@@ -202,9 +204,19 @@ predictW <- function(x){
                 cListy <- candiateF(lastWordF(triWx))
                 test3XYbeta<- triTokenF(test2x,cListy)
                  z <- as.character(test3XYbeta$triToken)
-                predict<- z[1]
-                predictW <- lastWordF(predict)
+               
+                if(length(z)!=0){
+                         predict<- z[1]
+                         predictW <- lastWordF(predict)
+                        }
+               
+                if(length(z)==0){
+                        predictW <- cListy[1]
+                        }
+                
                 }
+                
+        
  
 
         return(predictW)
@@ -212,7 +224,7 @@ predictW <- function(x){
 }      
 ###-----------------------------predict a word from input words-----------------------------
 
- mytest<- predictW("be")
+ mytest<- predictW("the")
 
 
 

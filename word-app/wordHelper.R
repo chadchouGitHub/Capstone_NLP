@@ -5,7 +5,7 @@
 
 ###----------------------------------loading word ranking df-----------------------------------
 ### Need to make sure the RData file is in the correct directory
-load('sortedOneTwoTri.RData')
+load('~/word-app/data/sortedOneTwoTri.RData')
 
 ###----------------------------------loading word ranking df-----------------------------------
 

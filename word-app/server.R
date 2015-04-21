@@ -1,10 +1,5 @@
 
-lastTwoWordF <- function(x){
-        splitWx <- unlist(strsplit(x, " "))
-        y<- paste(splitWx[(length(splitWx)-1)],splitWx[length(splitWx)])
-        return(y)
-}
-
+source('wordHelper.R')
 
 
 
