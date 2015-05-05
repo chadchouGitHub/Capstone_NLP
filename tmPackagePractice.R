@@ -108,11 +108,13 @@ triSorted <- triSorted[,c(1,3)]
 
 ## You can save you Data like this, and load back later. 
 ## In this way, you don't need to keep read from text file every time.
-save(oneSorted,twoSorted,triSorted,file='sortedOneTwoTri.RData')
+save(twoSorted,file='sortedTwo.RData')
+save(triSorted,file='sortedTri.RData')
 rm(oneSorted,twoSorted,triSorted)
 load('sortedOneTwoTri.RData')
 
 ## ----I make a 100 line read to creat a biToken DF for testing my app----
+triSorted <- triSorted[1:15566,]
 save(twoSorted,triSorted, file='sortedTwoForTest.RData')
 rm(twoSorted,triSorted)
 load('sortedTwoForTest.RData')
